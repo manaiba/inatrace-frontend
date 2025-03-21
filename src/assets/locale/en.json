@@ -3288,6 +3288,11 @@
     "guidedTour.paymentsSection.addPaymentButton": "Here you add a new payment. Alternatively, you can go to the delivery menu and select 'Add balance payment' from the Action menu.",
     "guidedTour.allStockSection.title": "ALL STOCK",
     "guidedTour.allStockSection.allStockSubmenu": "In the 'all stock' submenu you find all products available in your facilities and can access the batch history, Geo data and generated QR Codes.",
-    "guidedTour.allStockSection.selectFacility": "Here you select the facility your (semi-) product is currently located in."
+    "guidedTour.allStockSection.selectFacility": "Here you select the facility your (semi-) product is currently located in.",
+    "languageForLabelModal.languageCodes.fr": "FR",
+    "content.short_description": "Rendre les chaînes d'approvisionnement agricoles transparentes et équitables avec INATRACE",
+    "content.short.description.home": "INATRACE: Rend les chaînes d'approvisionnement agricoles transparentes et équitables",
+    "content.description.home": "INATrace est une solution numérique open-source qui met l'accent sur les personnes. Elle est conçue pour les chaînes d'approvisionnement agricoles mondiales transparentes afin d'améliorer les conditions économiques des petits exploitants, INATrace offre une traçabilité de bout en bout qui garantit un paiement équitable.",
+    "content.readmore": "Lire la suite"
   }
 }

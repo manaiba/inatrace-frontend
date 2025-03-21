@@ -1103,6 +1103,17 @@ export namespace ApiStockOrder {
                     isReadOnly: false,
                     isEnum: false,
                     required: false,
+                    name: 'available',
+                    classname: 'ApiStockOrder',
+                    dataType: 'boolean',
+                    isPrimitiveType: true,
+                    isListContainer: false,
+                    complexType: ''
+                },
+                {
+                    isReadOnly: false,
+                    isEnum: false,
+                    required: false,
                     name: 'openOrder',
                     classname: 'ApiStockOrder',
                     dataType: 'boolean',
@@ -1409,6 +1420,9 @@ export namespace ApiStockOrder {
   //                   validators: []
   //               },
   //               purchaseOrder: {
+  //                   validators: []
+  //               },
+  //               available: {
   //                   validators: []
   //               },
   //               openOrder: {

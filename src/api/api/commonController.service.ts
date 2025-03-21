@@ -349,7 +349,7 @@ export namespace UploadImage {
 })
 export class CommonControllerService {
 
-    protected basePath = 'http://localhost:8080';
+    protected basePath = 'https://foda.inatrace.cm';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 

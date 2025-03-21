@@ -181,7 +181,7 @@ export namespace GetFacility {
        * Facility ID
        */
       id: number;
-      language?: 'EN' | 'DE' | 'RW' | 'ES';
+      language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES';
     }
 
     /**
@@ -220,7 +220,7 @@ export namespace GetFacilityDetail {
        * Facility ID
        */
       id: number;
-      language?: 'EN' | 'DE' | 'RW' | 'ES';
+      language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES';
     }
 
     /**
@@ -259,7 +259,7 @@ export namespace ListAllFacilitiesByCompany {
        * Company ID
        */
       id: number;
-      language?: 'EN' | 'DE' | 'RW' | 'ES';
+      language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES';
       /**
        * Only count, only fetch, or return both values (if null)
        */
@@ -350,7 +350,7 @@ export namespace ListAvailableSellingFacilitiesForCompany {
        * Company ID
        */
       id: number;
-      language?: 'EN' | 'DE' | 'RW' | 'ES';
+      language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES';
       /**
        * Semi product ID
        */
@@ -461,7 +461,7 @@ export namespace ListCollectingFacilitiesByCompany {
        * Company ID
        */
       id: number;
-      language?: 'EN' | 'DE' | 'RW' | 'ES';
+      language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES';
       /**
        * Only count, only fetch, or return both values (if null)
        */
@@ -560,7 +560,7 @@ export namespace ListFacilitiesByCompany {
        * Final product ID
        */
       finalProductId?: number;
-      language?: 'EN' | 'DE' | 'RW' | 'ES';
+      language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES';
       /**
        * Only count, only fetch, or return both values (if null)
        */
@@ -658,7 +658,7 @@ export namespace ListFacilitiesByCompany {
 })
 export class FacilityControllerService {
 
-    protected basePath = 'http://localhost:8080';
+    protected basePath = 'https://foda.inatrace.cm';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -1064,10 +1064,10 @@ export class FacilityControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getFacility(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiResponseApiFacility>;
-    public getFacility(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiResponseApiFacility>>;
-    public getFacility(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiResponseApiFacility>>;
-    public getFacility(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public getFacility(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiResponseApiFacility>;
+    public getFacility(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiResponseApiFacility>>;
+    public getFacility(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiResponseApiFacility>>;
+    public getFacility(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getFacility.');
         }
@@ -1151,10 +1151,10 @@ export class FacilityControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getFacilityDetail(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiResponseApiFacility>;
-    public getFacilityDetail(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiResponseApiFacility>>;
-    public getFacilityDetail(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiResponseApiFacility>>;
-    public getFacilityDetail(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public getFacilityDetail(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiResponseApiFacility>;
+    public getFacilityDetail(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiResponseApiFacility>>;
+    public getFacilityDetail(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiResponseApiFacility>>;
+    public getFacilityDetail(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getFacilityDetail.');
         }
@@ -1248,10 +1248,10 @@ export class FacilityControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listAllFacilitiesByCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiPaginatedResponseApiFacility>;
-    public listAllFacilitiesByCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiPaginatedResponseApiFacility>>;
-    public listAllFacilitiesByCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiPaginatedResponseApiFacility>>;
-    public listAllFacilitiesByCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public listAllFacilitiesByCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiPaginatedResponseApiFacility>;
+    public listAllFacilitiesByCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiPaginatedResponseApiFacility>>;
+    public listAllFacilitiesByCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiPaginatedResponseApiFacility>>;
+    public listAllFacilitiesByCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling listAllFacilitiesByCompany.');
         }
@@ -1367,10 +1367,10 @@ export class FacilityControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listAvailableSellingFacilitiesForCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', semiProductId?: number, finalProductId?: number, requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiPaginatedResponseApiFacility>;
-    public listAvailableSellingFacilitiesForCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', semiProductId?: number, finalProductId?: number, requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiPaginatedResponseApiFacility>>;
-    public listAvailableSellingFacilitiesForCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', semiProductId?: number, finalProductId?: number, requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiPaginatedResponseApiFacility>>;
-    public listAvailableSellingFacilitiesForCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', semiProductId?: number, finalProductId?: number, requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public listAvailableSellingFacilitiesForCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', semiProductId?: number, finalProductId?: number, requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiPaginatedResponseApiFacility>;
+    public listAvailableSellingFacilitiesForCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', semiProductId?: number, finalProductId?: number, requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiPaginatedResponseApiFacility>>;
+    public listAvailableSellingFacilitiesForCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', semiProductId?: number, finalProductId?: number, requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiPaginatedResponseApiFacility>>;
+    public listAvailableSellingFacilitiesForCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', semiProductId?: number, finalProductId?: number, requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling listAvailableSellingFacilitiesForCompany.');
         }
@@ -1488,10 +1488,10 @@ export class FacilityControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listCollectingFacilitiesByCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiPaginatedResponseApiFacility>;
-    public listCollectingFacilitiesByCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiPaginatedResponseApiFacility>>;
-    public listCollectingFacilitiesByCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiPaginatedResponseApiFacility>>;
-    public listCollectingFacilitiesByCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public listCollectingFacilitiesByCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiPaginatedResponseApiFacility>;
+    public listCollectingFacilitiesByCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiPaginatedResponseApiFacility>>;
+    public listCollectingFacilitiesByCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiPaginatedResponseApiFacility>>;
+    public listCollectingFacilitiesByCompany(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling listCollectingFacilitiesByCompany.');
         }
@@ -1607,10 +1607,10 @@ export class FacilityControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listFacilitiesByCompany(id: number, semiProductId?: number, finalProductId?: number, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiPaginatedResponseApiFacility>;
-    public listFacilitiesByCompany(id: number, semiProductId?: number, finalProductId?: number, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiPaginatedResponseApiFacility>>;
-    public listFacilitiesByCompany(id: number, semiProductId?: number, finalProductId?: number, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiPaginatedResponseApiFacility>>;
-    public listFacilitiesByCompany(id: number, semiProductId?: number, finalProductId?: number, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public listFacilitiesByCompany(id: number, semiProductId?: number, finalProductId?: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiPaginatedResponseApiFacility>;
+    public listFacilitiesByCompany(id: number, semiProductId?: number, finalProductId?: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiPaginatedResponseApiFacility>>;
+    public listFacilitiesByCompany(id: number, semiProductId?: number, finalProductId?: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiPaginatedResponseApiFacility>>;
+    public listFacilitiesByCompany(id: number, semiProductId?: number, finalProductId?: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling listFacilitiesByCompany.');
         }

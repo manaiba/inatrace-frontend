@@ -46,7 +46,7 @@ export namespace CreateOrUpdateProcessingOrder {
      */
     export interface PartialParamMap {
       ApiProcessingOrder: ApiProcessingOrder;
-      language?: 'EN' | 'DE' | 'RW' | 'ES';
+      language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES';
     }
 
     /**
@@ -114,7 +114,7 @@ export namespace GetProcessingOrder {
        * ProcessingOrder ID
        */
       id: number;
-      language?: 'EN' | 'DE' | 'RW' | 'ES';
+      language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES';
     }
 
     /**
@@ -148,7 +148,7 @@ export namespace GetProcessingOrder {
 })
 export class ProcessingOrderControllerService {
 
-    protected basePath = 'http://localhost:8080';
+    protected basePath = 'https://foda.inatrace.cm';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -218,10 +218,10 @@ export class ProcessingOrderControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createOrUpdateProcessingOrder(ApiProcessingOrder: ApiProcessingOrder, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiResponseApiBaseEntity>;
-    public createOrUpdateProcessingOrder(ApiProcessingOrder: ApiProcessingOrder, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiResponseApiBaseEntity>>;
-    public createOrUpdateProcessingOrder(ApiProcessingOrder: ApiProcessingOrder, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiResponseApiBaseEntity>>;
-    public createOrUpdateProcessingOrder(ApiProcessingOrder: ApiProcessingOrder, language?: 'EN' | 'DE' | 'RW' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public createOrUpdateProcessingOrder(ApiProcessingOrder: ApiProcessingOrder, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiResponseApiBaseEntity>;
+    public createOrUpdateProcessingOrder(ApiProcessingOrder: ApiProcessingOrder, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiResponseApiBaseEntity>>;
+    public createOrUpdateProcessingOrder(ApiProcessingOrder: ApiProcessingOrder, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiResponseApiBaseEntity>>;
+    public createOrUpdateProcessingOrder(ApiProcessingOrder: ApiProcessingOrder, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
         if (ApiProcessingOrder === null || ApiProcessingOrder === undefined) {
             throw new Error('Required parameter ApiProcessingOrder was null or undefined when calling createOrUpdateProcessingOrder.');
         }
@@ -393,10 +393,10 @@ export class ProcessingOrderControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getProcessingOrder(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiResponseApiProcessingOrder>;
-    public getProcessingOrder(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiResponseApiProcessingOrder>>;
-    public getProcessingOrder(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiResponseApiProcessingOrder>>;
-    public getProcessingOrder(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public getProcessingOrder(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiResponseApiProcessingOrder>;
+    public getProcessingOrder(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiResponseApiProcessingOrder>>;
+    public getProcessingOrder(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiResponseApiProcessingOrder>>;
+    public getProcessingOrder(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getProcessingOrder.');
         }

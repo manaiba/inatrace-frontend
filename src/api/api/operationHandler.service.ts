@@ -108,7 +108,7 @@ export namespace HandleUsingGET {
 })
 export class OperationHandlerService {
 
-    protected basePath = 'http://localhost:8080';
+    protected basePath = 'https://foda.inatrace.cm';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 

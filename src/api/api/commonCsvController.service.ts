@@ -182,7 +182,7 @@ export namespace GeneratePurchasesByCompanyCsv {
        * Company ID
        */
       id: number;
-      language?: 'EN' | 'DE' | 'RW' | 'ES';
+      language?: 'EN' | 'DE' | 'RW' |'FR' |  'ES';
       /**
        * Only count, only fetch, or return both values (if null)
        */
@@ -318,7 +318,7 @@ export namespace GeneratePurchasesByCompanyCsv {
 })
 export class CommonCsvControllerService {
 
-    protected basePath = 'http://localhost:8080';
+    protected basePath = 'https://foda.inatrace.cm';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -544,10 +544,10 @@ export class CommonCsvControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public generatePurchasesByCompanyCsv(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', preferredWayOfPayment?: 'CASH' | 'CASH_VIA_COLLECTOR' | 'BANK_TRANSFER' | 'CHEQUE' | 'OFFSETTING' | 'UNKNOWN', isWomenShare?: boolean, productionDateStart?: string, productionDateEnd?: string, query?: string, observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<string>;
-    public generatePurchasesByCompanyCsv(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', preferredWayOfPayment?: 'CASH' | 'CASH_VIA_COLLECTOR' | 'BANK_TRANSFER' | 'CHEQUE' | 'OFFSETTING' | 'UNKNOWN', isWomenShare?: boolean, productionDateStart?: string, productionDateEnd?: string, query?: string, observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<string>>;
-    public generatePurchasesByCompanyCsv(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', preferredWayOfPayment?: 'CASH' | 'CASH_VIA_COLLECTOR' | 'BANK_TRANSFER' | 'CHEQUE' | 'OFFSETTING' | 'UNKNOWN', isWomenShare?: boolean, productionDateStart?: string, productionDateEnd?: string, query?: string, observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<string>>;
-    public generatePurchasesByCompanyCsv(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', preferredWayOfPayment?: 'CASH' | 'CASH_VIA_COLLECTOR' | 'BANK_TRANSFER' | 'CHEQUE' | 'OFFSETTING' | 'UNKNOWN', isWomenShare?: boolean, productionDateStart?: string, productionDateEnd?: string, query?: string, observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public generatePurchasesByCompanyCsv(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR'| 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', preferredWayOfPayment?: 'CASH' | 'CASH_VIA_COLLECTOR' | 'BANK_TRANSFER' | 'CHEQUE' | 'OFFSETTING' | 'UNKNOWN', isWomenShare?: boolean, productionDateStart?: string, productionDateEnd?: string, query?: string, observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<string>;
+    public generatePurchasesByCompanyCsv(id: number, language?: 'EN' | 'DE' | 'RW' |  'FR'| 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', preferredWayOfPayment?: 'CASH' | 'CASH_VIA_COLLECTOR' | 'BANK_TRANSFER' | 'CHEQUE' | 'OFFSETTING' | 'UNKNOWN', isWomenShare?: boolean, productionDateStart?: string, productionDateEnd?: string, query?: string, observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<string>>;
+    public generatePurchasesByCompanyCsv(id: number, language?: 'EN' | 'DE' | 'RW' |  'FR'| 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', preferredWayOfPayment?: 'CASH' | 'CASH_VIA_COLLECTOR' | 'BANK_TRANSFER' | 'CHEQUE' | 'OFFSETTING' | 'UNKNOWN', isWomenShare?: boolean, productionDateStart?: string, productionDateEnd?: string, query?: string, observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<string>>;
+    public generatePurchasesByCompanyCsv(id: number, language?: 'EN' | 'DE' | 'RW' |  'FR'| 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', preferredWayOfPayment?: 'CASH' | 'CASH_VIA_COLLECTOR' | 'BANK_TRANSFER' | 'CHEQUE' | 'OFFSETTING' | 'UNKNOWN', isWomenShare?: boolean, productionDateStart?: string, productionDateEnd?: string, query?: string, observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling generatePurchasesByCompanyCsv.');
         }

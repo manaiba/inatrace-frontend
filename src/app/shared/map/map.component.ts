@@ -1,22 +1,26 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import * as mapboxgl from 'mapbox-gl';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, Subject } from 'rxjs';
 import { ApiPlotCoordinate } from '../../../api/model/apiPlotCoordinate';
 import { PlotCoordinatesManagerService } from '../../shared-services/plot-coordinates-manager.service';
 import { PlotActionWrapper, PlotCoordinateAction } from '../../shared-services/plot-coordinate-action-enum';
 import { ApiPlot } from '../../../api/model/apiPlot';
 import { GlobalEventManagerService } from '../../core/global-event-manager.service';
-import { Subject } from 'rxjs/internal/Subject';
+// import { Subject } from 'rxjs/internal/Subject';
 import { CompanyControllerService } from '../../../api/api/companyController.service';
 import { FormControl } from '@angular/forms';
 
+// @ts-ignore
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
+// declare var mapboxgl: any;
+
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
+
 
   private map: mapboxgl.Map;
   private MAPBOX_STYLE_BASE_PATH = 'mapbox://styles/mapbox/';

@@ -13,6 +13,7 @@ import {NgbModalImproved} from '../../../core/ngb-modal-improved/ngb-modal-impro
 import {
   OpenPlotDetailsExternallyModalComponent
 } from '../../company-farmers/open-plot-details-externally-modal/open-plot-details-externally-modal.component';
+import { MapComponent } from '../../../shared/map/map.component';
 
 @Component({
   selector: 'app-plots-form',

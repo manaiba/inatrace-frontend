@@ -118,7 +118,7 @@ export namespace ExportDeliveriesData {
        * Production date range end
        */
       productionDateEnd?: string;
-      language?: 'EN' | 'DE' | 'RW' | 'ES';
+      language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES';
     }
 
     /**
@@ -222,7 +222,7 @@ export namespace ExportProcessingPerformanceData {
      */
     export interface PartialParamMap {
       ApiProcessingPerformanceRequest: ApiProcessingPerformanceRequest;
-      language?: 'EN' | 'DE' | 'RW' | 'ES';
+      language?: 'EN' | 'DE' | 'RW' | 'FR' |  'ES';
     }
 
     /**
@@ -386,7 +386,7 @@ export namespace GetDeliveriesAggregatedData {
 })
 export class DashboardControllerService {
 
-    protected basePath = 'http://localhost:8080';
+    protected basePath = 'https://foda.inatrace.cm';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -566,10 +566,10 @@ export class DashboardControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public exportDeliveriesData(companyId: number, aggregationType: 'DAY' | 'WEEK' | 'MONTH' | 'YEAR', exportType: 'EXCEL' | 'PDF' | 'CSV', facilityIds?: Array<number>, semiProductId?: number, farmerId?: number, collectorId?: number, isWomenShare?: boolean, organicOnly?: boolean, priceDeterminedLater?: boolean, productionDateStart?: string, productionDateEnd?: string, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<Blob>;
-    public exportDeliveriesData(companyId: number, aggregationType: 'DAY' | 'WEEK' | 'MONTH' | 'YEAR', exportType: 'EXCEL' | 'PDF' | 'CSV', facilityIds?: Array<number>, semiProductId?: number, farmerId?: number, collectorId?: number, isWomenShare?: boolean, organicOnly?: boolean, priceDeterminedLater?: boolean, productionDateStart?: string, productionDateEnd?: string, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<Blob>>;
-    public exportDeliveriesData(companyId: number, aggregationType: 'DAY' | 'WEEK' | 'MONTH' | 'YEAR', exportType: 'EXCEL' | 'PDF' | 'CSV', facilityIds?: Array<number>, semiProductId?: number, farmerId?: number, collectorId?: number, isWomenShare?: boolean, organicOnly?: boolean, priceDeterminedLater?: boolean, productionDateStart?: string, productionDateEnd?: string, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<Blob>>;
-    public exportDeliveriesData(companyId: number, aggregationType: 'DAY' | 'WEEK' | 'MONTH' | 'YEAR', exportType: 'EXCEL' | 'PDF' | 'CSV', facilityIds?: Array<number>, semiProductId?: number, farmerId?: number, collectorId?: number, isWomenShare?: boolean, organicOnly?: boolean, priceDeterminedLater?: boolean, productionDateStart?: string, productionDateEnd?: string, language?: 'EN' | 'DE' | 'RW' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public exportDeliveriesData(companyId: number, aggregationType: 'DAY' | 'WEEK' | 'MONTH' | 'YEAR', exportType: 'EXCEL' | 'PDF' | 'CSV', facilityIds?: Array<number>, semiProductId?: number, farmerId?: number, collectorId?: number, isWomenShare?: boolean, organicOnly?: boolean, priceDeterminedLater?: boolean, productionDateStart?: string, productionDateEnd?: string, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<Blob>;
+    public exportDeliveriesData(companyId: number, aggregationType: 'DAY' | 'WEEK' | 'MONTH' | 'YEAR', exportType: 'EXCEL' | 'PDF' | 'CSV', facilityIds?: Array<number>, semiProductId?: number, farmerId?: number, collectorId?: number, isWomenShare?: boolean, organicOnly?: boolean, priceDeterminedLater?: boolean, productionDateStart?: string, productionDateEnd?: string, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<Blob>>;
+    public exportDeliveriesData(companyId: number, aggregationType: 'DAY' | 'WEEK' | 'MONTH' | 'YEAR', exportType: 'EXCEL' | 'PDF' | 'CSV', facilityIds?: Array<number>, semiProductId?: number, farmerId?: number, collectorId?: number, isWomenShare?: boolean, organicOnly?: boolean, priceDeterminedLater?: boolean, productionDateStart?: string, productionDateEnd?: string, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<Blob>>;
+    public exportDeliveriesData(companyId: number, aggregationType: 'DAY' | 'WEEK' | 'MONTH' | 'YEAR', exportType: 'EXCEL' | 'PDF' | 'CSV', facilityIds?: Array<number>, semiProductId?: number, farmerId?: number, collectorId?: number, isWomenShare?: boolean, organicOnly?: boolean, priceDeterminedLater?: boolean, productionDateStart?: string, productionDateEnd?: string, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
         if (companyId === null || companyId === undefined) {
             throw new Error('Required parameter companyId was null or undefined when calling exportDeliveriesData.');
         }
@@ -701,10 +701,10 @@ export class DashboardControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public exportProcessingPerformanceData(ApiProcessingPerformanceRequest: ApiProcessingPerformanceRequest, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<Blob>;
-    public exportProcessingPerformanceData(ApiProcessingPerformanceRequest: ApiProcessingPerformanceRequest, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<Blob>>;
-    public exportProcessingPerformanceData(ApiProcessingPerformanceRequest: ApiProcessingPerformanceRequest, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<Blob>>;
-    public exportProcessingPerformanceData(ApiProcessingPerformanceRequest: ApiProcessingPerformanceRequest, language?: 'EN' | 'DE' | 'RW' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public exportProcessingPerformanceData(ApiProcessingPerformanceRequest: ApiProcessingPerformanceRequest, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<Blob>;
+    public exportProcessingPerformanceData(ApiProcessingPerformanceRequest: ApiProcessingPerformanceRequest, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<Blob>>;
+    public exportProcessingPerformanceData(ApiProcessingPerformanceRequest: ApiProcessingPerformanceRequest, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<Blob>>;
+    public exportProcessingPerformanceData(ApiProcessingPerformanceRequest: ApiProcessingPerformanceRequest, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
         if (ApiProcessingPerformanceRequest === null || ApiProcessingPerformanceRequest === undefined) {
             throw new Error('Required parameter ApiProcessingPerformanceRequest was null or undefined when calling exportProcessingPerformanceData.');
         }

@@ -45,7 +45,7 @@ export namespace CreateProductOrder {
      */
     export interface PartialParamMap {
       ApiProductOrder: ApiProductOrder;
-      language?: 'EN' | 'DE' | 'RW' | 'ES';
+      language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES';
     }
 
     /**
@@ -78,7 +78,7 @@ export namespace GetProductOrder {
        * Product order ID
        */
       id: number;
-      language?: 'EN' | 'DE' | 'RW' | 'ES';
+      language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES';
     }
 
     /**
@@ -112,7 +112,7 @@ export namespace GetProductOrder {
 })
 export class ProductOrderControllerService {
 
-    protected basePath = 'http://localhost:8080';
+    protected basePath = 'https://foda.inatrace.cm';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -182,10 +182,10 @@ export class ProductOrderControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createProductOrder(ApiProductOrder: ApiProductOrder, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiResponseApiBaseEntity>;
-    public createProductOrder(ApiProductOrder: ApiProductOrder, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiResponseApiBaseEntity>>;
-    public createProductOrder(ApiProductOrder: ApiProductOrder, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiResponseApiBaseEntity>>;
-    public createProductOrder(ApiProductOrder: ApiProductOrder, language?: 'EN' | 'DE' | 'RW' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public createProductOrder(ApiProductOrder: ApiProductOrder, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiResponseApiBaseEntity>;
+    public createProductOrder(ApiProductOrder: ApiProductOrder, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiResponseApiBaseEntity>>;
+    public createProductOrder(ApiProductOrder: ApiProductOrder, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiResponseApiBaseEntity>>;
+    public createProductOrder(ApiProductOrder: ApiProductOrder, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
         if (ApiProductOrder === null || ApiProductOrder === undefined) {
             throw new Error('Required parameter ApiProductOrder was null or undefined when calling createProductOrder.');
         }
@@ -275,10 +275,10 @@ export class ProductOrderControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getProductOrder(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiResponseApiProductOrder>;
-    public getProductOrder(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiResponseApiProductOrder>>;
-    public getProductOrder(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiResponseApiProductOrder>>;
-    public getProductOrder(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public getProductOrder(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiResponseApiProductOrder>;
+    public getProductOrder(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiResponseApiProductOrder>>;
+    public getProductOrder(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiResponseApiProductOrder>>;
+    public getProductOrder(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getProductOrder.');
         }

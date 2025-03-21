@@ -3,7 +3,9 @@ var converter = require('api-spec-converter');
 var child_process = require('child_process');
 var fetch = require("node-fetch");
 
-var swagger_docs_host = 'http://localhost:8080/v3/api-docs'
+// var swagger_docs_host = 'https://inatrace-backend.test/v3/api-docs'
+var swagger_docs_host = 'https://foda.inatrace.cm/v3/api-docs'
+const https = require('https');
 
 function afterBuild(code) {
     if (code === 0) {
