@@ -1,7 +1,7 @@
 {
     "/api": {
-        "target": "http://localhost:8080",
-        "secure": true,
+        "target": "https://inatrace-frontend.test",
+        "secure": false,
         "logLevel": "debug",
         "pathRewrite": {
 

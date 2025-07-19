@@ -34,6 +34,7 @@ import { ApiResponseApiUserCustomer } from '../model/apiResponseApiUserCustomer'
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
+import {environment} from '../../environments/environment';
 
 /**
  * Namespace for getUserCustomer.
@@ -246,8 +247,7 @@ export namespace GetUserCustomerListUsingGET {
 })
 export class UserCustomerControllerService {
 
-    // protected basePath = 'https://foda.inatrace.cm';
-    protected basePath = 'https://foda.inatrace.cm';
+    protected basePath = environment.basePath;
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 

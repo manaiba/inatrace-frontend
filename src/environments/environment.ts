@@ -7,11 +7,11 @@ import { VERSION } from './version';
 export const environment = {
     production: false,
     environmentName: window['env']['environmentName'] || '',
-    basePath: '',
+    basePath: window['env']['basePath'] || '',
     appBaseUrl: window['env']['appBaseUrl'] || '',
     qrCodeBasePath: window['env']['qrCodeBasePath'] || '',
-    chainRelativeFileUploadUrl: '',
-    chainRelativeFileDownloadUrl: '',
+    chainRelativeFileUploadUrl: window['env']['chainRelativeFileUploadUrl'] || '',
+    chainRelativeFileDownloadUrl: window['env']['chainRelativeFileDownloadUrl'] || '',
     relativeFileUploadUrl: window['env']['relativeFileUploadUrl'] || '',
     relativeFileUploadUrlManualType: window['env']['relativeFileUploadUrlManualType'] || '',
     relativeImageUploadUrl: window['env']['relativeImageUploadUrl'] || '',
@@ -19,18 +19,19 @@ export const environment = {
     version: VERSION,
 
     googleMapsApiKey: window['env']['googleMapsApiKey'] || '',
-    googleAnalyticsId: '',
+    googleAnalyticsId: window['env']['googleAnalyticsId'] || '',
     mapboxAccessToken: window['env']['mapboxAccessToken'] || '',
-    facebookPixelId: null,
-    intercomAppId: null,
-    chatApp: null,
-    rocketChatServer: null,
+    facebookPixelId: window['env']['facebookPixelId'] || null,
+    intercomAppId: window['env']['intercomAppId'] || null,
+    chatApp: window['env']['chatApp'] || null,
+    rocketChatServer: window['env']['rocketChatServer'] || null,
     tokenForPublicLogRoute: window['env']['tokenForPublicLogRoute'] || '',
     appName: 'INATrace',
-    reloadDelay: 500,
-    harcodedLabelForPrivacyOnRegisterPage: '',
+    reloadDelay: window['env']['reloadDelay'] || '',
+    harcodedLabelForPrivacyOnRegisterPage: window['env']['harcodedLabelForPrivacyOnRegisterPage'] || '',
     beycoAuthURL: window['env']['beycoAuthURL'] || '',
-    beycoClientId: window['env']['beycoClientId'] || ''
+    beycoClientId: window['env']['beycoClientId'] || '',
+    whispApiKey: window['env']['whispApiKey'] || '',
 };
 
 /*

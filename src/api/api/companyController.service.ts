@@ -55,6 +55,7 @@ import { InlineObject } from '../model/inlineObject';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
+import {environment} from '../../environments/environment';
 
 /**
  * Namespace for addUserCustomer.
@@ -1641,7 +1642,7 @@ export namespace UploadUserCustomerGeoData {
 })
 export class CompanyControllerService {
 
-    protected basePath = 'https://foda.inatrace.cm';
+    protected basePath = environment.basePath;
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 

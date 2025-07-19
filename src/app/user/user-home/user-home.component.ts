@@ -73,7 +73,7 @@ export class UserHomeComponent implements OnInit, OnDestroy, AfterViewInit {
   );
 
   showCollectorsNavButton = false;
-  showMyCustomersNavButton = true;
+  showMyCustomersNavButton = false;
 
   user: ApiUserGet | null = null;
 

@@ -35,6 +35,7 @@ import { uuidv4 } from 'src/shared/utils';
 import { SelectedUserCompanyService } from '../../../../core/selected-user-company.service';
 import { ProcessingOrderInputComponent } from './processing-order-input/processing-order-input.component';
 import { ProcessingOrderOutputComponent } from './processing-order-output/processing-order-output.component';
+import { ToastrService } from 'ngx-toastr';
 
 type PageMode = 'create' | 'edit';
 
@@ -125,7 +126,8 @@ export class StockProcessingOrderDetailsComponent implements OnInit, AfterViewIn
     private facilityController: FacilityControllerService,
     private authService: AuthService,
     private selUserCompanyService: SelectedUserCompanyService,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private toastr: ToastrService
   ) { }
 
   get selectedProcAction(): ApiProcessingAction {
@@ -133,7 +135,9 @@ export class StockProcessingOrderDetailsComponent implements OnInit, AfterViewIn
   }
 
   get actionType(): ProcessingActionType {
-    return this.selectedProcAction ? this.selectedProcAction.type : null;
+    return this.selectedProcAction && this.selectedProcAction.type !== undefined
+      ? this.selectedProcAction.type as ProcessingActionType
+      : null;
   }
 
   get rightSideEnabled(): boolean {
@@ -424,6 +428,12 @@ export class StockProcessingOrderDetailsComponent implements OnInit, AfterViewIn
 
       // Add common shared data (processing evidences, comments, etc.) to all target output Stock order
       this.enrichTargetStockOrders(processingOrder.targetStockOrders);
+
+      // if(processingOrder.targetStockOrders[0].requiredEvidenceTypeValues?.length == 0) {
+      //    this.toastr.info('Vous devez renseigner un document associé', 'Processing Evidence');
+       
+      //   return;
+      // }
 
       const res = await this.processingOrderController
         .createOrUpdateProcessingOrder(processingOrder).pipe(take(1)).toPromise();

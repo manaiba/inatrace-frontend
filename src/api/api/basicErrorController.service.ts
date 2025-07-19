@@ -34,6 +34,7 @@ import { ModelAndView } from '../model/modelAndView';
 
 import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
 import { Configuration } from '../configuration';
+import {environment} from '../../environments/environment';
 
 /**
  * Namespace for errorHtmlUsingDELETE.
@@ -211,7 +212,7 @@ export namespace ErrorHtmlUsingPUT {
 })
 export class BasicErrorControllerService {
 
-    protected basePath = 'https://foda.inatrace.cm';
+    protected basePath = environment.basePath;
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 

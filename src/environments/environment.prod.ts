@@ -7,10 +7,8 @@ import { VERSION } from './version';
 export const environment = {
     production: true,
     environmentName: window['env']['environmentName'] || '',
-    basePath: 'https://foda.inatrace.cm',
-    // basePath: 'https://foda.inatrace.cm',
-    appBaseUrl: 'https://foda.inatrace.cm',
-    // appBaseUrl: 'https://foda.inatrace.cm',
+    basePath: 'https://inatrace-frontend.test',
+    appBaseUrl: 'https://inatrace-frontend.test',
     qrCodeBasePath: window['env']['qrCodeBasePath'] || '',
     chainRelativeFileUploadUrl: '/api/common/document',
     chainRelativeFileDownloadUrl: '/api/common/document',
@@ -18,7 +16,7 @@ export const environment = {
     relativeFileUploadUrlManualType: '/api/common/document',
     relativeImageUploadUrl: '/api/common/image',
     relativeImageUploadUrlAllSizes: '/api/common/image',
-    version: '2.39.0-SNAPSHOT',
+    version: '2.40',
 
     googleMapsApiKey: window['env']['googleMapsApiKey'] || '',
     googleAnalyticsId: '',
@@ -32,7 +30,8 @@ export const environment = {
     reloadDelay: 500,
     harcodedLabelForPrivacyOnRegisterPage: '',
     beycoAuthURL: window['env']['beycoAuthURL'] || '',
-    beycoClientId: window['env']['beycoClientId'] || ''
+    beycoClientId: window['env']['beycoClientId'] || '',
+    whispApiKey: '***REMOVED***'
 };
 
 /*

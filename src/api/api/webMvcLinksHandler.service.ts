@@ -24,14 +24,15 @@ import { Inject, Injectable, Optional }                      from '@angular/core
 import { ValidatorFn, Validators } from '@angular/forms';
 
 import { HttpClient, HttpHeaders, HttpParams,  HttpResponse, HttpEvent } from '@angular/common/http';
-import { CustomHttpUrlEncodingCodec }                        from '../encoder';
+import { CustomHttpUrlEncodingCodec } from '../encoder';
 
-import { Observable }                                        from 'rxjs';
-import { catchError }                                        from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 
-import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
-import { Configuration }                                     from '../configuration';
+import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
+import { Configuration } from '../configuration';
+import {environment} from '../../environments/environment';
 
 /**
  * Namespace for linksUsingGET.
@@ -64,7 +65,7 @@ export namespace LinksUsingGET {
 })
 export class WebMvcLinksHandlerService {
 
-    protected basePath = 'https://foda.inatrace.cm';
+    protected basePath = environment.basePath;
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
