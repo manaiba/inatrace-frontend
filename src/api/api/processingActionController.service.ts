@@ -112,7 +112,7 @@ export namespace GetProcessingAction {
        * ProcessingAction ID
        */
       id: number;
-      language?: 'EN' | 'DE' | 'RW' | 'ES';
+      language?: 'EN' | 'DE' | 'RW' |'FR' | 'ES';
     }
 
     /**
@@ -151,7 +151,7 @@ export namespace GetProcessingActionDetail {
        * ProcessingAction ID
        */
       id: number;
-      language?: 'EN' | 'DE' | 'RW' | 'ES';
+      language?: 'EN' | 'DE' | 'RW' |'FR' | 'ES';
     }
 
     /**
@@ -198,7 +198,7 @@ export namespace ListProcessingActionsByCompany {
        * Only final product actions
        */
       onlyFinalProducts?: boolean;
-      language?: 'EN' | 'DE' | 'RW' | 'ES';
+      language?: 'EN' | 'DE' | 'RW' |'FR' | 'ES';
       /**
        * Only count, only fetch, or return both values (if null)
        */
@@ -536,10 +536,10 @@ export class ProcessingActionControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getProcessingAction(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiResponseApiProcessingAction>;
-    public getProcessingAction(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiResponseApiProcessingAction>>;
-    public getProcessingAction(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiResponseApiProcessingAction>>;
-    public getProcessingAction(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public getProcessingAction(id: number, language?: 'EN' | 'DE' | 'RW' |'FR' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiResponseApiProcessingAction>;
+    public getProcessingAction(id: number, language?: 'EN' | 'DE' | 'RW' |'FR' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiResponseApiProcessingAction>>;
+    public getProcessingAction(id: number, language?: 'EN' | 'DE' | 'RW' |'FR' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiResponseApiProcessingAction>>;
+    public getProcessingAction(id: number, language?: 'EN' | 'DE' | 'RW' |'FR' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getProcessingAction.');
         }
@@ -623,10 +623,10 @@ export class ProcessingActionControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getProcessingActionDetail(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiResponseApiProcessingAction>;
-    public getProcessingActionDetail(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiResponseApiProcessingAction>>;
-    public getProcessingActionDetail(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiResponseApiProcessingAction>>;
-    public getProcessingActionDetail(id: number, language?: 'EN' | 'DE' | 'RW' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public getProcessingActionDetail(id: number, language?: 'EN' | 'DE' | 'RW' |'FR' | 'ES', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiResponseApiProcessingAction>;
+    public getProcessingActionDetail(id: number, language?: 'EN' | 'DE' | 'RW' | 'FR' |'ES', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiResponseApiProcessingAction>>;
+    public getProcessingActionDetail(id: number, language?: 'EN' | 'DE' | 'RW' |'FR' | 'ES', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiResponseApiProcessingAction>>;
+    public getProcessingActionDetail(id: number, language?: 'EN' | 'DE' | 'RW' |'FR' | 'ES', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getProcessingActionDetail.');
         }
@@ -724,10 +724,10 @@ export class ProcessingActionControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listProcessingActionsByCompany(id: number, actionType?: 'PROCESSING' | 'FINAL_PROCESSING' | 'SHIPMENT' | 'TRANSFER' | 'GENERATE_QR_CODE', onlyFinalProducts?: boolean, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiPaginatedResponseApiProcessingAction>;
-    public listProcessingActionsByCompany(id: number, actionType?: 'PROCESSING' | 'FINAL_PROCESSING' | 'SHIPMENT' | 'TRANSFER' | 'GENERATE_QR_CODE', onlyFinalProducts?: boolean, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiPaginatedResponseApiProcessingAction>>;
-    public listProcessingActionsByCompany(id: number, actionType?: 'PROCESSING' | 'FINAL_PROCESSING' | 'SHIPMENT' | 'TRANSFER' | 'GENERATE_QR_CODE', onlyFinalProducts?: boolean, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiPaginatedResponseApiProcessingAction>>;
-    public listProcessingActionsByCompany(id: number, actionType?: 'PROCESSING' | 'FINAL_PROCESSING' | 'SHIPMENT' | 'TRANSFER' | 'GENERATE_QR_CODE', onlyFinalProducts?: boolean, language?: 'EN' | 'DE' | 'RW' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public listProcessingActionsByCompany(id: number, actionType?: 'PROCESSING' | 'FINAL_PROCESSING' | 'SHIPMENT' | 'TRANSFER' | 'GENERATE_QR_CODE', onlyFinalProducts?: boolean, language?: 'EN' | 'DE' | 'RW' |'FR' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiPaginatedResponseApiProcessingAction>;
+    public listProcessingActionsByCompany(id: number, actionType?: 'PROCESSING' | 'FINAL_PROCESSING' | 'SHIPMENT' | 'TRANSFER' | 'GENERATE_QR_CODE', onlyFinalProducts?: boolean, language?: 'EN' | 'DE' | 'RW' |'FR' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiPaginatedResponseApiProcessingAction>>;
+    public listProcessingActionsByCompany(id: number, actionType?: 'PROCESSING' | 'FINAL_PROCESSING' | 'SHIPMENT' | 'TRANSFER' | 'GENERATE_QR_CODE', onlyFinalProducts?: boolean, language?: 'EN' | 'DE' | 'RW' |'FR' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiPaginatedResponseApiProcessingAction>>;
+    public listProcessingActionsByCompany(id: number, actionType?: 'PROCESSING' | 'FINAL_PROCESSING' | 'SHIPMENT' | 'TRANSFER' | 'GENERATE_QR_CODE', onlyFinalProducts?: boolean, language?: 'EN' | 'DE' | 'RW' |'FR' | 'ES', requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling listProcessingActionsByCompany.');
         }

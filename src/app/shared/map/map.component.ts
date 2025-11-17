@@ -74,6 +74,9 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Input()
   editable: boolean;
+
+  // Ajout event de click map
+  @Output() mapClick = new EventEmitter<{ longitude: number, latitude: number }>();
   
   subscriptions: Subscription = new Subscription();
   markers: Array<mapboxgl.Marker> = [];
@@ -240,6 +243,10 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
         this.map.setStyle(`${this.MAPBOX_STYLE_BASE_PATH}${value}`);
       })
     );
+
+    this.map.on('click', (e) => {
+      this.onMapClick(e);
+    });
   }
 
   flyToCurrentPosition(): void {
@@ -607,6 +614,17 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     latCenter = latCenter / plotCoordinates.length;
 
     this.placeMarkerOnMap(latCenter, lonCenter, plot);
+  }
+
+  // pour gerer click sur Map
+  private onMapClick(event: mapboxgl.MapMouseEvent) {
+    const coordinates = event.lngLat;
+    
+    // Émet les coordonnées via l'Output
+    this.mapClick.emit({
+      longitude: coordinates.lng,
+      latitude: coordinates.lat
+    });
   }
 
 }

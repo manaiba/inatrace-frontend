@@ -3186,7 +3186,11 @@
     "content.short_description": "Rendre les chaînes d'approvisionnement agricoles transparentes et équitables avec INATRACE",
     "content.short.description.home": "INATRACE : Rend les chaînes d'approvisionnement agricoles transparentes et équitables",
     "content.description.home": "INATrace est une solution numérique open-source centrée sur l'humain. Conçue pour des chaînes d'approvisionnement agricoles mondiales transparentes afin d'améliorer les conditions économiques des petits exploitants, INATrace offre une traçabilité de bout en bout garantissant un paiement équitable.",
-    "content.readmore": "Lire la suite"
+    "content.readmore": "Lire la suite",
+    "collectorDetail.textinput.centerLatitude.label": "Latitude Point Central",
+    "collectorDetail.textinput.centerLongitude.label": "Longitude Point Central",
+    "collectorDetail.textinput.centerLatitude.placeholder": "Latitude Point Central",
+    "collectorDetail.textinput.centerLongitude.placeholder": "Longitude Point Central"
 }
 }
 	
