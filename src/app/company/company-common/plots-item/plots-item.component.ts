@@ -215,12 +215,7 @@ export class PlotsItemComponent extends GenericEditableItemComponent<ApiPlot> im
   onMapClick(event: { longitude: number, latitude: number }) {
     this.centerLongitude = event.longitude;
     this.centerLatitude = event.latitude;
-    
-    console.log('Coordonnées récupérées:', {
-      longitude: this.centerLongitude,
-      latitude: this.centerLatitude
-    });
-
+ 
     // Optionnel: mettez à jour le formulaire si nécessaire
     this.updateFormWithCenterCoordinates();
   }

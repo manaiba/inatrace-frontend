@@ -34,7 +34,6 @@
 
                 <div class="af-c12">
                     <app-map *ngIf="isOpen && tagOpened" style="width: 100%; display: block;"
-                            (mapClick)="onMapClick($event)"
                              [plotCoordinatesManager]="plotCoordinatesManager"
                              [(plotCoordinates)]="plotCoordinates"
                              (plotCoordinatesChange)="updateFormCoordinates($event)"

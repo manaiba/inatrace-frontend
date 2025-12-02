@@ -1,6 +1,6 @@
 {
     "/api": {
-        "target": "https://inatrace-frontend.test",
+        "target": "https://cocoageotrack.cm",
         "secure": false,
         "logLevel": "debug",
         "pathRewrite": {
