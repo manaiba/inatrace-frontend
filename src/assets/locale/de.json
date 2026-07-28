@@ -2808,6 +2808,7 @@
     "companyDetail.farmers.import.validationErrors.cellError.type.INCORRECT_TYPE": "Der Wert in der Zelle ist vom falschen Typ",
     "companyDetail.farmers.import.validationErrors.cellError.type.REQUIRED": "Die Zelle darf nicht leer sein",
     "companyDetail.farmers.import.validationErrors.cellError.type.INVALID_VALUE": "Der angegebene Wert in der Zelle ist ungültig",
+    "companyDetail.farmers.import.validationErrors.cellError.type.INVALID_GEODATA": "The geo data is not valid. Expected format: POLYGON((lat1 lon1, lat2 lon2, ...)) with at least 3 points, or POINT(lat lon), with valid latitude (-90 to 90) and longitude (-180 to 180) values",
     "companyDetail.farmers.import.success.label": "Landwirte erfolgreich importiert. Bitte überprüfen Sie die Daten auf der Registerkarte Unternehmen > Landwirte",
     "productLabelFinalProduct.title.finalProducts": "Endprodukte",
     "productLabelFinalProduct.subTitle.listOfFinalProducts": "Liste der Enderzeugnisse",

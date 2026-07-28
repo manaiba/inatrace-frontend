@@ -2878,6 +2878,7 @@
     "companyDetail.farmers.import.validationErrors.cellError.type.INCORRECT_TYPE": "La valeur dans la cellule est du mauvais type",
     "companyDetail.farmers.import.validationErrors.cellError.type.REQUIRED": "La cellule ne peut pas être vide",
     "companyDetail.farmers.import.validationErrors.cellError.type.INVALID_VALUE": "La valeur fournie dans la cellule est invalide",
+    "companyDetail.farmers.import.validationErrors.cellError.type.INVALID_GEODATA": "Les données géographiques ne sont pas valides. Format attendu : POLYGON((lat1 lon1, lat2 lon2, ...)) avec au moins 3 points, ou POINT(lat lon), avec des valeurs de latitude (-90 à 90) et de longitude (-180 à 180) valides",
     "productLabelFinalProduct.title.finalProducts": "Produits finis",
     "productLabelFinalProduct.subTitle.listOfFinalProducts": "Liste des produits finis",
     "productLabelFinalProduct.subTitle.showingFinalProducts": "Affichage de {$INTERPOLATION}/{$INTERPOLATION_1}",
