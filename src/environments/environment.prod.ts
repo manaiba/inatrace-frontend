@@ -6,9 +6,9 @@ import { VERSION } from './version';
 
 export const environment = {
     production: true,
-    environmentName: window['env']['environmentName'] || '',
-    basePath: 'https://inatrace-frontend.test',
-    appBaseUrl: 'https://inatrace-frontend.test',
+    environmentName: window['env']['environmentName'] || 'PROD',
+    basePath: window['env']['basePath'] || '',
+    appBaseUrl: window['env']['appBaseUrl'] || '',
     qrCodeBasePath: window['env']['qrCodeBasePath'] || '',
     chainRelativeFileUploadUrl: '/api/common/document',
     chainRelativeFileDownloadUrl: '/api/common/document',
