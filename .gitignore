@@ -52,3 +52,7 @@ Thumbs.db
 
 # Python bytecode (release scripts)
 __pycache__/
+
+# Server logs are not source and contain visitor IP addresses.
+/access.log
+*.log

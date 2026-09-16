@@ -1,0 +1,28 @@
+#!/bin/sh
+# Refuse to commit credentials or live personal data.
+# Enable once per clone:  git config core.hooksPath .githooks
+staged=$(git diff --cached --name-only --diff-filter=ACM)
+[ -z "$staged" ] && exit 0
+
+fail=0
+for f in $staged; do
+  case "$f" in
+    Upload/*|logs/*|*.log|application.properties|*.properties_old|*/env.js|.env|*.bak)
+      echo "pre-commit: refusing '$f' - live data or local configuration." >&2; fail=1 ;;
+  esac
+done
+
+# Secret-shaped literals in the staged content, skipping templates and lockfiles.
+for f in $staged; do
+  case "$f" in *.template|*template.js|*.lock|package-lock.json) continue ;; esac
+  [ -f "$f" ] || continue
+  if git show ":$f" 2>/dev/null | grep -qE '(pk|sk)\.eyJ[A-Za-z0-9_-]{20,}|AIza[A-Za-z0-9_-]{30,}|ghp_[A-Za-z0-9]{30,}|-----BEGIN [A-Z ]*PRIVATE KEY'; then
+    echo "pre-commit: '$f' looks like it contains an API token or private key." >&2; fail=1
+  fi
+  if git show ":$f" 2>/dev/null | grep -qE '^[[:space:]]*(spring\.datasource\.password|spring\.mail\.password|.*jwtSigningKey)[[:space:]]*=[[:space:]]*[^[:space:]$]'; then
+    echo "pre-commit: '$f' sets a password or signing key inline." >&2; fail=1
+  fi
+done
+
+[ "$fail" = 0 ] || { echo "pre-commit: commit aborted (use --no-verify only if you are certain)." >&2; exit 1; }
+exit 0

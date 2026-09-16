@@ -13,6 +13,7 @@
     window['env']['googleMapsApiKey'] = '${GOOGLE_MAPS_API_KEY}';
     window['env']['tokenForPublicLogRoute'] = '${TOKEN_FOR_PUBLIC_LOG_ROUTE}';
     window['env']['mapboxAccessToken'] = '${MAPBOX_ACCESS_TOKEN}';
+    window['env']['whispApiKey'] = '${WHISP_API_KEY}';
 
     // Environment variables for Beyco integration
     window['env']['beycoAuthURL'] = '${BEYCO_AUTH_URL}'
