@@ -44,6 +44,11 @@
                     <div class="counting-page content-element--counting" i18n="@@productLabelStakeholders.subTitle.showingFarmers">Showing {{ showing }}/{{ farmerCount }}</div>
                 </div>
 
+                <div class="d-flex align-items-start">
+                <select class="form-control mr-3" style="width: auto;" [formControl]="validationStatusFilter"
+                        aria-label="Status" i18n-aria-label="@@farmerValidation.column.status">
+                    <option *ngFor="let option of validationStatusOptions" [ngValue]="option.value">{{ option.label }}</option>
+                </select>
                 <app-search-textinput
                         [form]="searchNameFarmers"
                         (valueChange)="onSearchInput($event)"
@@ -52,6 +57,7 @@
                         [searchCategory]="this.byCategory"
                         (categoryChange)="onCategoryChange($event)">
                 </app-search-textinput>
+                </div>
             </div>
         </div>
 
@@ -106,6 +112,10 @@
                         </ng-container>
 
                         <td [attr.data-label]="sortOptions[6].name">
+                            <span [class]="statusClass(farmer.validationStatus)">{{ statusLabel(farmer.validationStatus) }}</span>
+                        </td>
+
+                        <td [attr.data-label]="sortOptions[7].name">
                             <span>
                                 <a i18n="@@productLabelStakeholdersCollectors.tableCol.edit"
                                    (click)="editFarmer(farmer.id)"

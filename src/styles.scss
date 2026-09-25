@@ -4220,3 +4220,27 @@ input.toggle-switch-checkbox:checked + label.toggle-switch-label:after {
   box-shadow: 0 0 2px #000;
   cursor: pointer;
 }
+
+/* Supervisor review state of a farmer (list column and farmer page) */
+.farmer-status {
+  display: inline-block;
+  padding: 0.1rem 0.6rem;
+  border-radius: 1rem;
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+
+.farmer-status--validated {
+  background: #e6f2dc;
+  color: #3f6b1d;
+}
+
+.farmer-status--pending {
+  background: #fff1d6;
+  color: #8a5a00;
+}
+
+.farmer-status--rejected {
+  background: #fbe0e0;
+  color: #a12626;
+}

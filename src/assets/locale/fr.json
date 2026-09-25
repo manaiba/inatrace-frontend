@@ -152,7 +152,6 @@
   "locationForm.origin.helpText": "Double-cliquez sur la carte pour placer une épingle et marquer les emplacements. Cliquez droit sur le marqueur pour le supprimer.",
   "locationForm.textinput.latitude.label": "Latitude",
   "locationForm.textinput.longitude.label": "Longitude",
-  "locationForm.coordinates.required": "Un lieu visible publiquement doit avoir des coordonnées : double-cliquez sur la carte pour placer une épingle, ou saisissez la latitude et la longitude.",
   "facilityAdd.save.invalid.title": "Installation non enregistrée",
   "facilityAdd.save.invalid.message": "Des champs obligatoires sont manquants ou invalides. Veuillez vérifier les champs signalés.",
   "mapboxPins.tokenMissing": "Carte indisponible : aucun jeton d'accès Mapbox n'est configuré.",
@@ -1108,10 +1107,10 @@
     "companyDetailProcessingActions.hint.translations": "Spécifiez le nom en anglais et ajoutez des traductions pour toutes les langues utilisées.",
     "companyDetailProcessingActions.textInput.name.label": "Nom du processus",
     "companyDetailProcessingActions.textInput.name.helpText": "Entrez un nom",
-    "companyDetailProcessingActions.textInput.name.error": "Le nom saisi est invalide.",
+    "companyDetailProcessingActions.textInput.name.error": "Le nom du processus est requis.",
     "companyDetailProcessingActions.textInput.description.label": "Description",
     "companyDetailProcessingActions.textInput.description.helpText": "Entrez une brève description de l'action de traitement.",
-    "companyDetailProcessingActions.textInput.description.error": "La description saisie est invalide.",
+    "companyDetailProcessingActions.textInput.description.error": "La description est requise.",
     "companyDetailProcessingActions.textInput.publicTimelineLabel.label": "Libellé public de timeline",
     "companyDetailProcessingActions.textInput.publicTimelineLabel.helpText": "Entrez un libellé de timeline",
     "companyDetailProcessingActions.textInput.publicTimelineLabel.error": "Le libellé public de timeline est invalide.",
@@ -3214,8 +3213,6 @@
 "companyDetail.list-editor.productionRecord.error": " {$START_TAG_SPAN} Les registres de production sont obligatoires {$CLOSE_TAG_SPAN} ",
 "companyDetail.list-editor.videos.error": " {$START_TAG_SPAN} Les vidéos sont obligatoires {$CLOSE_TAG_SPAN} ",
 "companyDetailProcessingActions.field.maxOutputWeight.error.required": " {$START_TAG_SPAN}Le poids de sortie maximal est obligatoire{$CLOSE_TAG_SPAN} ",
-"companyDetailProcessingActions.textInput.description.error.required": " {$START_TAG_SPAN} La description est obligatoire {$CLOSE_TAG_SPAN} ",
-"companyDetailProcessingActions.textInput.name.error.required": " {$START_TAG_SPAN} Le nom du procédé est obligatoire {$CLOSE_TAG_SPAN} ",
 "companyDetailProcessingActions.textInput.prefix.error.required": " {$START_TAG_SPAN} Le préfixe du lot est obligatoire {$CLOSE_TAG_SPAN} ",
 "companyDetailProcessingActions.textInput.publicTimelineLabel.error.required": " {$START_TAG_SPAN} Le libellé public de la chronologie est obligatoire {$CLOSE_TAG_SPAN} ",
 "globalErrorHandler.closeButtonText": "Fermer",
@@ -3273,7 +3270,15 @@
 "valueChainDetail.textinput.productType.error": " Le type de produit est obligatoire. ",
 "valueChainDetail.textinput.productType.label": "Type de produit de la chaîne de valeur",
 "common.button.cancel": "Annuler",
-"common.button.close": "Fermer"
+"common.button.close": "Fermer",
+"farmerValidation.status.pending": "En attente de validation",
+"farmerValidation.status.rejected": "Non validé",
+"farmerValidation.status.validated": "Validé",
+"farmerValidation.column.status": "Statut",
+"farmerValidation.filter.all": "Tous les statuts",
+"farmerValidation.saved.title": "Statut mis à jour",
+"farmerValidation.action.validate": "Valider",
+"farmerValidation.action.reject": "Rejeter"
 }
 }
 	

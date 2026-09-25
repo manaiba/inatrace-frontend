@@ -3369,6 +3369,14 @@
   "content.short_description": "Make agricultural supply chains transparent and fair with INATrace",
   "content.readmore": "Read more",
   "common.button.cancel": "Cancel",
-  "common.button.close": "Close"
+  "common.button.close": "Close",
+  "farmerValidation.status.pending": "Pending validation",
+  "farmerValidation.status.rejected": "Not validated",
+  "farmerValidation.status.validated": "Validated",
+  "farmerValidation.column.status": "Status",
+  "farmerValidation.filter.all": "All statuses",
+  "farmerValidation.saved.title": "Status updated",
+  "farmerValidation.action.validate": "Validate",
+  "farmerValidation.action.reject": "Reject"
   }
 }

@@ -47,6 +47,10 @@ export interface ApiUserCustomer {
      */
     type?: ApiUserCustomer.TypeEnum;
     /**
+     * Supervisor review state; changed only through setUserCustomerValidationStatus
+     */
+    validationStatus?: ApiUserCustomer.ValidationStatusEnum;
+    /**
      * Name
      */
     name?: string;
@@ -174,6 +178,15 @@ export namespace ApiUserCustomer {
     export enum TypeEnum {
         COLLECTOR = 'COLLECTOR',
         FARMER = 'FARMER'
+    }
+
+    /**
+     * All possible values of validationStatus.
+     */
+    export enum ValidationStatusEnum {
+        PENDING = 'PENDING',
+        VALIDATED = 'VALIDATED',
+        REJECTED = 'REJECTED'
     }
 
     /**

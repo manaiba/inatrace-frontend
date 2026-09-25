@@ -9,7 +9,22 @@
                  tooltipClass="self-onboarding-tooltip-class"
                  #newFarmerTitleTooltip="ngbTooltip">
                 <div class="af-form-block--c12">
-                    <div class="title-page content-element--title">{{ title }}</div>
+                    <div class="d-flex justify-content-between align-items-center flex-wrap">
+                        <div class="title-page content-element--title">{{title}}
+                            <span *ngIf="update && farmer" class="ml-3" [class]="statusClass(farmer.validationStatus)"
+                                  style="font-size: 1rem; vertical-align: middle;">{{ statusLabel(farmer.validationStatus) }}</span>
+                        </div>
+                        <div *ngIf="update && farmer && canReviewFarmer">
+                            <button type="button" class="btn btn-solid round mr-2"
+                                    *ngIf="farmer.validationStatus !== 'VALIDATED'"
+                                    (click)="setValidationStatus('VALIDATED')"
+                                    i18n="@@farmerValidation.action.validate">Validate</button>
+                            <button type="button" class="btn btn-outlined round"
+                                    *ngIf="farmer.validationStatus !== 'REJECTED'"
+                                    (click)="setValidationStatus('REJECTED')"
+                                    i18n="@@farmerValidation.action.reject">Reject</button>
+                        </div>
+                    </div>
                 </div>
                 <ng-template #newFarmerTitleTooltipTemplate>
                     <div>

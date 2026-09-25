@@ -1088,6 +1088,10 @@ export namespace GetUserCustomersForCompanyAndType {
        * Direction of sorting (ASC or DESC). Default DESC.
        */
       sort?: 'ASC' | 'DESC';
+      /**
+       * Only farmers in this supervisor review state
+       */
+      validationStatus?: 'PENDING' | 'VALIDATED' | 'REJECTED';
     }
 
     /**
@@ -1130,7 +1134,11 @@ export namespace GetUserCustomersForCompanyAndType {
       /**
        * Direction of sorting (ASC or DESC). Default DESC.
        */
-      sort = 'sort'
+      sort = 'sort',
+      /**
+       * Only farmers in this supervisor review state
+       */
+      validationStatus = 'validationStatus'
     }
 
     /**
@@ -3577,7 +3585,9 @@ export class CompanyControllerService {
       map.sortBy,
       map.sort,
       observe,
-      reportProgress
+      reportProgress,
+      undefined,
+      map.validationStatus
     );
   }
 
@@ -3598,10 +3608,10 @@ export class CompanyControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getUserCustomersForCompanyAndType(companyId: number, type: 'COLLECTOR' | 'FARMER', language?: 'EN' | 'DE' | 'RW' | 'FR' |'ES', query?: string, searchBy?: string, requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiPaginatedResponseApiUserCustomer>;
-    public getUserCustomersForCompanyAndType(companyId: number, type: 'COLLECTOR' | 'FARMER', language?: 'EN' | 'DE' | 'RW' | 'FR' |'ES', query?: string, searchBy?: string, requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiPaginatedResponseApiUserCustomer>>;
-    public getUserCustomersForCompanyAndType(companyId: number, type: 'COLLECTOR' | 'FARMER', language?: 'EN' | 'DE' | 'RW' | 'FR' |'ES', query?: string, searchBy?: string, requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiPaginatedResponseApiUserCustomer>>;
-    public getUserCustomersForCompanyAndType(companyId: number, type: 'COLLECTOR' | 'FARMER', language?: 'EN' | 'DE' | 'RW' | 'FR' |'ES', query?: string, searchBy?: string, requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public getUserCustomersForCompanyAndType(companyId: number, type: 'COLLECTOR' | 'FARMER', language?: 'EN' | 'DE' | 'RW' | 'FR' |'ES', query?: string, searchBy?: string, requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>, validationStatus?: 'PENDING' | 'VALIDATED' | 'REJECTED'): Observable<ApiPaginatedResponseApiUserCustomer>;
+    public getUserCustomersForCompanyAndType(companyId: number, type: 'COLLECTOR' | 'FARMER', language?: 'EN' | 'DE' | 'RW' | 'FR' |'ES', query?: string, searchBy?: string, requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>, validationStatus?: 'PENDING' | 'VALIDATED' | 'REJECTED'): Observable<HttpResponse<ApiPaginatedResponseApiUserCustomer>>;
+    public getUserCustomersForCompanyAndType(companyId: number, type: 'COLLECTOR' | 'FARMER', language?: 'EN' | 'DE' | 'RW' | 'FR' |'ES', query?: string, searchBy?: string, requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>, validationStatus?: 'PENDING' | 'VALIDATED' | 'REJECTED'): Observable<HttpEvent<ApiPaginatedResponseApiUserCustomer>>;
+    public getUserCustomersForCompanyAndType(companyId: number, type: 'COLLECTOR' | 'FARMER', language?: 'EN' | 'DE' | 'RW' | 'FR' |'ES', query?: string, searchBy?: string, requestType?: 'COUNT' | 'FETCH', limit?: number, offset?: number, sortBy?: string, sort?: 'ASC' | 'DESC', observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>, validationStatus?: 'PENDING' | 'VALIDATED' | 'REJECTED'): Observable<any> {
         if (companyId === null || companyId === undefined) {
             throw new Error('Required parameter companyId was null or undefined when calling getUserCustomersForCompanyAndType.');
         }
@@ -3630,6 +3640,9 @@ export class CompanyControllerService {
         }
         if (sort !== undefined && sort !== null) {
             queryParameters = queryParameters.set('sort', <any>sort);
+        }
+        if (validationStatus !== undefined && validationStatus !== null) {
+            queryParameters = queryParameters.set('validationStatus', <any>validationStatus);
         }
 
         let headers = this.defaultHeaders;
@@ -4539,6 +4552,45 @@ export class CompanyControllerService {
         );
         if(typeof this.configuration.errorHandler === 'function') {
           return handle.pipe(catchError(err => this.configuration.errorHandler(err, 'uploadUserCustomerGeoData')));
+        }
+        return handle;
+    }
+
+
+    /**
+     * Set the supervisor review state of a farmer (company admin or system admin only)
+     * @param id User customer ID
+     * @param status New review state
+     */
+    public setUserCustomerValidationStatus(id: number, status: 'PENDING' | 'VALIDATED' | 'REJECTED', language?: 'EN' | 'DE' | 'RW' | 'FR' | 'ES'): Observable<ApiResponseApiUserCustomer> {
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling setUserCustomerValidationStatus.');
+        }
+        if (status === null || status === undefined) {
+            throw new Error('Required parameter status was null or undefined when calling setUserCustomerValidationStatus.');
+        }
+
+        const queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()}).set('status', <any>status);
+
+        let headers = this.defaultHeaders;
+        if (language !== undefined && language !== null) {
+            headers = headers.set('language', String(language));
+        }
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(['application/json']);
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        const handle = this.httpClient.put<ApiResponseApiUserCustomer>(`${this.configuration.basePath}/api/company/userCustomers/${encodeURIComponent(String(id))}/validation-status`,
+            null,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers
+            }
+        );
+        if (typeof this.configuration.errorHandler === 'function') {
+          return handle.pipe(catchError(err => this.configuration.errorHandler(err, 'setUserCustomerValidationStatus')));
         }
         return handle;
     }
