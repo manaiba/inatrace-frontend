@@ -31,7 +31,7 @@ describe('StockProcessingOrderDetailsComponent save failures', () => {
       null,
       null,
       null,
-      null, null
+      null
     );
     component.procOrderGroup = new FormGroup({
       processingAction: new FormControl({
@@ -122,7 +122,7 @@ describe('StockProcessingOrderDetailsComponent', () => {
       detectChanges: jasmine.createSpy('detectChanges')
     };
     const component = new StockProcessingOrderDetailsComponent(
-      null, null, null, null, null, processingActionController as any, null, null, null, changeDetectorRef as any, null
+      null, null, null, null, null, processingActionController as any, null, null, null, changeDetectorRef as any
     );
 
     const action = await (component as any).loadCompleteProcessingAction(17);

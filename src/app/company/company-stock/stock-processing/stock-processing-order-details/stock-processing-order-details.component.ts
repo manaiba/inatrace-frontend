@@ -35,7 +35,6 @@ import { uuidv4 } from 'src/shared/utils';
 import { SelectedUserCompanyService } from '../../../../core/selected-user-company.service';
 import { ProcessingOrderInputComponent } from './processing-order-input/processing-order-input.component';
 import { ProcessingOrderOutputComponent } from './processing-order-output/processing-order-output.component';
-import { ToastrService } from 'ngx-toastr';
 
 type PageMode = 'create' | 'edit';
 
@@ -126,8 +125,7 @@ export class StockProcessingOrderDetailsComponent implements OnInit, AfterViewIn
     private facilityController: FacilityControllerService,
     private authService: AuthService,
     private selUserCompanyService: SelectedUserCompanyService,
-    private changeDetectorRef: ChangeDetectorRef,
-    private toastr: ToastrService
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
 
   get selectedProcAction(): ApiProcessingAction {
@@ -217,7 +215,7 @@ export class StockProcessingOrderDetailsComponent implements OnInit, AfterViewIn
     }
 
     return $localize`:@@productLabelStockProcessingOrderDetail.textinput.outputQuantity.expectedOutputHelpText:Expected output quantity range:` +
-        ` ${quantityFrom} ~ ${quantityTo} (${this.currentInputStockUnit.measurementUnitType.label})`;
+        ` ${quantityFrom} ~ ${quantityTo} (${this.currentInputStockUnit?.measurementUnitType?.label ?? ''})`;
   }
 
   get targetStockOrdersArray(): FormArray {

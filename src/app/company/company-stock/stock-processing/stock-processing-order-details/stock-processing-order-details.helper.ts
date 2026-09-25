@@ -94,7 +94,7 @@ export class StockProcessingOrderDetailsHelper {
     }
 
     // Create stock order evidence field instances (values) for every form control
-    Object.keys(stockOrderEvidenceFields).forEach(key => {
+    Object.keys(stockOrderEvidenceFields ?? {}).forEach(key => {
 
       const procEvidenceField = selectedProcAction.requiredEvidenceFields.find(pef => pef.fieldName === key);
 

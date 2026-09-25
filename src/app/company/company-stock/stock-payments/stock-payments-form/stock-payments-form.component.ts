@@ -19,6 +19,7 @@ import { ConnectedCompaniesForCompanyService } from '../../../../shared-services
 import { CurrencyCodesService } from '../../../../shared-services/currency-codes.service';
 import { SelectedUserCompanyService } from '../../../../core/selected-user-company.service';
 import {Subject} from 'rxjs';
+import { personName } from '../../../../shared-services/person-name';
 
 export enum ModeEnum {
   PURCHASE = 'PURCHASE',
@@ -239,7 +240,7 @@ export class StockPaymentsFormComponent implements OnInit, OnDestroy {
 
     if (this.paymentForm.contains('paymentConfirmedByUser')) {
       const paymentConfirmedByUser = this.paymentForm.get('paymentConfirmedByUser').value;
-      this.confirmedByUser = paymentConfirmedByUser.name + ' ' + paymentConfirmedByUser.surname;
+      this.confirmedByUser = personName(paymentConfirmedByUser);
     }
   }
 

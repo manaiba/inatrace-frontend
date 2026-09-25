@@ -23,6 +23,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FileSaverService } from 'ngx-filesaver';
 import { NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
 import { SelfOnboardingService } from "../../../../shared-services/self-onboarding.service";
+import { farmerIdentityName } from '../../../../shared-services/person-name';
 
 @Component({
   selector: 'app-stock-unit-list',
@@ -689,24 +690,7 @@ export class StockUnitListComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   farmerName(farmer: ApiUserCustomer) {
-
-    if (farmer) {
-      if (farmer.location?.address?.country?.code === 'RW') {
-
-        const cell = farmer.location.address.cell ? farmer.location.address.cell.substring(0, 2).toLocaleUpperCase() : '--';
-        const village = farmer.location.address.village ? farmer.location.address.village.substring(0, 2).toLocaleUpperCase() : '--';
-        return farmer.name + ' ' + farmer.surname + ' (' + farmer.id + ', ' + village + '-' + cell + ')';
-
-      } else if (farmer.location?.address?.country?.code === 'HN') {
-        const municipality = farmer.location.address.hondurasMunicipality ? farmer.location.address.hondurasMunicipality : '--';
-        const village = farmer.location.address.hondurasVillage ? farmer.location.address.hondurasVillage : '--';
-        return farmer.name + ' ' + farmer.surname + ' (' + farmer.id + ', ' + municipality + '-' + village + ')';
-      }
-
-      return farmer.name + ' ' + farmer.surname;
-    }
-
-    return '';
+    return farmerIdentityName(farmer);
   }
 
   async exportGeoData(order: ApiStockOrder) {

@@ -35,6 +35,7 @@ import { SelectedUserCompanyService } from '../../../../core/selected-user-compa
 import { ApiUserGet } from '../../../../../api/model/apiUserGet';
 import { ApiCompanyGet } from '../../../../../api/model/apiCompanyGet';
 import { Subscription } from 'rxjs';
+import { personName } from '../../../../shared-services/person-name';
 
 @Component({
   selector: 'app-stock-bulk-delivery-details',
@@ -240,6 +241,11 @@ export class StockBulkDeliveryDetailsComponent implements OnInit, OnDestroy {
       this.farmersCodebook = new CompanyUserCustomersByRoleService(this.companyControllerService, this.companyProfile?.id, 'FARMER');
       this.collectorsCodebook = new CompanyUserCustomersByRoleService(this.companyControllerService, this.companyProfile?.id, 'COLLECTOR');
 
+      if (!this.facility) {
+        // The facility could not be loaded (the error has already been shown); nothing to build on
+        this.globalEventsManager.showLoading(false);
+        return;
+      }
       this.newPurchaseBulkOrder();
 
       this.updateValidators();
@@ -276,7 +282,7 @@ export class StockBulkDeliveryDetailsComponent implements OnInit, OnDestroy {
     if (this.companyProfile) {
       const obj = {};
       for (const user of this.companyProfile.users) {
-        obj[user.id.toString()] = user.name + ' ' + user.surname;
+        obj[user.id.toString()] = personName(user);
       }
       this.codebookUsers = EnumSifrant.fromObject(obj);
     }
@@ -764,7 +770,8 @@ export class StockBulkDeliveryDetailsComponent implements OnInit, OnDestroy {
           .getUserCustomer(control.get('producerUserCustomer').value?.id).pipe(take(1)).toPromise();
 
         if (farmerResponse && farmerResponse.status === StatusEnum.OK && farmerResponse.data) {
-          const identifier = 'PT-' + farmerResponse.data.surname + '-' + this.purchaseOrderBulkForm.get('productionDate').value;
+          // Both names: the family name alone could not tell farmers apart in the deliveries history (bug #13)
+          const identifier = 'PT-' + personName(farmerResponse.data) + '-' + this.purchaseOrderBulkForm.get('productionDate').value;
           control.get('identifier').setValue(identifier);
         }
     }));

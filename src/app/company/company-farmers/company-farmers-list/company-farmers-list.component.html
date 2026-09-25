@@ -73,8 +73,8 @@
 
                     <tbody>
                     <tr *ngFor="let farmer of farmers.items">
-                        <td scope="row" [attr.data-label]="sortOptions[0].name"><span>{{ farmer.name }}</span></td>
-                        <td [attr.data-label]="sortOptions[1].name"><span>{{ farmer.surname }}</span></td>
+                        <td scope="row" [attr.data-label]="sortOptions[0].name"><span>{{ farmer.surname }}</span></td>
+                        <td [attr.data-label]="sortOptions[1].name"><span>{{ farmer.name }}</span></td>
                         <td [attr.data-label]="sortOptions[2].name"><span>{{ farmer.gender }}</span></td>
                         <td [attr.data-label]="sortOptions[3].name"><span>{{ farmer.id }}</span></td>
 

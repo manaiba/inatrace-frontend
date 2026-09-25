@@ -30,6 +30,7 @@ import { ApiUserGet } from '../../../../../api/model/apiUserGet';
 import { Subscription } from 'rxjs';
 import { ApiCompanyGet } from '../../../../../api/model/apiCompanyGet';
 import { ToastrService } from 'ngx-toastr';
+import { personName } from '../../../../shared-services/person-name';
 
 @Component({
   selector: 'app-stock-delivery-details',
@@ -303,6 +304,10 @@ export class StockDeliveryDetailsComponent implements OnInit, OnDestroy {
 
       if (this.update) {
         this.editStockOrder().then();
+      } else if (!this.facility) {
+        // The facility could not be loaded (the error has already been shown); nothing to build on
+        this.globalEventsManager.showLoading(false);
+        return;
       } else {
         this.newStockOrder();
       }
@@ -363,7 +368,7 @@ export class StockDeliveryDetailsComponent implements OnInit, OnDestroy {
     if (this.companyProfile) {
       const obj = {};
       for (const user of this.companyProfile.users) {
-        obj[user.id.toString()] = user.name + ' ' + user.surname;
+        obj[user.id.toString()] = personName(user);
       }
       this.codebookUsers = EnumSifrant.fromObject(obj);
     }
@@ -832,7 +837,8 @@ export class StockDeliveryDetailsComponent implements OnInit, OnDestroy {
       .getUserCustomer(this.stockOrderForm.get('producerUserCustomer').value?.id).pipe(take(1)).toPromise();
 
     if (farmerResponse && farmerResponse.status === StatusEnum.OK && farmerResponse.data) {
-      const identifier = 'PT-' + farmerResponse.data.surname + '-' + this.stockOrderForm.get('productionDate').value;
+      // Both names: the family name alone could not tell farmers apart in the deliveries history (bug #13)
+          const identifier = 'PT-' + personName(farmerResponse.data) + '-' + this.stockOrderForm.get('productionDate').value;
       this.stockOrderForm.get('identifier').setValue(identifier);
     }
   }

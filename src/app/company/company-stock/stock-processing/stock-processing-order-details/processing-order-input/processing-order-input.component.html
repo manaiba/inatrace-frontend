@@ -195,7 +195,7 @@
                         </div>
                         <div class="af-c8">
                             <ng-container *ngIf="item.orderType === 'PURCHASE_ORDER'">
-                                <span>{{ item.identifier }} ({{ item.producerUserCustomer.name }} {{ item.producerUserCustomer.surname }})</span>
+                                <span>{{ item.identifier }} ({{ item.producerUserCustomer | farmerIdentity }})</span>
                             </ng-container>
                             <ng-container *ngIf="item.orderType != 'PURCHASE_ORDER'">
                                 <span>{{ item.lotPrefix }} {{ item.identifier }} {{ item.internalLotNumber }}</span>

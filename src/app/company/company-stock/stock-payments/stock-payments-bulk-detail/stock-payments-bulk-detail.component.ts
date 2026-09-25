@@ -33,6 +33,7 @@ import PaymentStatusEnum = ApiPayment.PaymentStatusEnum;
 import PreferredWayOfPaymentEnum = ApiPayment.PreferredWayOfPaymentEnum;
 import { ApiCompanyGet } from '../../../../../api/model/apiCompanyGet';
 import { SelectedUserCompanyService } from '../../../../core/selected-user-company.service';
+import { personName } from '../../../../shared-services/person-name';
 
 enum BulkType {
   BONUS = 'BONUS',
@@ -264,7 +265,7 @@ export class StockPaymentsBulkDetailComponent implements OnInit, OnDestroy {
     }
 
     if (this.bulkPayment.createdBy) {
-      this.createdBy = this.bulkPayment.createdBy.name + ' ' + this.bulkPayment.createdBy.surname;
+      this.createdBy = personName(this.bulkPayment.createdBy);
     }
   }
 

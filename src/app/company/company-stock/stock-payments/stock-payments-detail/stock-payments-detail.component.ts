@@ -19,6 +19,7 @@ import RecipientTypeEnum = ApiPayment.RecipientTypeEnum;
 import UserCustomerTypeEnum = ApiUserCustomerCooperative.UserCustomerTypeEnum;
 import { ToastrService } from 'ngx-toastr';
 import { SelectedUserCompanyService } from '../../../../core/selected-user-company.service';
+import { personName } from '../../../../shared-services/person-name';
 
 @Component({
   selector: 'app-stock-payments-detail',
@@ -214,7 +215,7 @@ export class StockPaymentsDetailComponent implements OnInit {
         : this.stockOrder.internalLotNumber);
 
     if (this.payment.updatedBy) {
-      this.lastUpdatedByUser = this.payment.updatedBy.name + ' ' + this.payment.updatedBy.surname;
+      this.lastUpdatedByUser = personName(this.payment.updatedBy);
     }
   }
 

@@ -131,11 +131,11 @@
                 <ng-container *ngIf="stockOrder.purchaseOrder">
                   <tr>
                     <th i18n="@@orderHistoryView.tableCol.semiProductName">Farmer</th>
-                    <td>{{ stockOrder.producerUserCustomer?.name }} {{ stockOrder.producerUserCustomer?.surname }}</td>
+                    <td>{{ stockOrder.producerUserCustomer | farmerIdentity }}</td>
                   </tr>
                   <tr>
                     <th i18n="@@orderHistoryView.tableCol.farmerRepresentative">Farmer representative</th>
-                    <td>{{ stockOrder.representativeOfProducerUserCustomer?.name }} {{ stockOrder.representativeOfProducerUserCustomer?.surname }}</td>
+                    <td>{{ stockOrder.representativeOfProducerUserCustomer | farmerIdentity }}</td>
                   </tr>
                   <tr>
                     <th i18n="@@orderHistoryView.tableCol.costPaidBalance">Cost / Paid / Balance</th>

@@ -35,7 +35,7 @@
                     <ng-container *ngIf="duplicates && duplicates.length > 0">
                         <h4 i18n="@@companyDetail.farmers.import.duplicates.label">Duplicates</h4>
                         <div class="d-flex justify-content-between mb-3" *ngFor="let duplicate of duplicates; index as i">
-                            <p class="m-0">{{ duplicate.name }} {{ duplicate.surname }}, {{ duplicate.location.address.village}}</p>
+                            <p class="m-0">{{ duplicate | farmerIdentity }}</p>
                             <div class="d-flex justify-content-end">
                                 <button class="btn btn-solid round btn-table-new content-element--btn"
                                         i18n="@@companyDetail.farmers.import.accept"

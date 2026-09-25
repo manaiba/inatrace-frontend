@@ -33,6 +33,7 @@ import { ListEditorItemsComponent } from './list-editor-items/list-editor-items.
 import { ListEditorComponent } from './list-editor/list-editor.component';
 import { MiniButtonsComponent } from './mini-buttons/mini-buttons.component';
 import { DefaultPipe } from './pipes/default.pipe';
+import { FarmerIdentityPipe, PersonNamePipe } from './pipes/person-name.pipe';
 import { FormatDatePipe } from './pipes/format-date.pipe';
 import { FormatLongTextPipe } from './pipes/format-long-text.pipe';
 import { ListFilterPipe } from './pipes/list-filter.pipe';
@@ -85,6 +86,8 @@ import { MapboxPinsComponent } from './mapbox-pins/mapbox-pins.component';
         Link2Directive,
         ListFilterPipe,
         DefaultPipe,
+        PersonNamePipe,
+        FarmerIdentityPipe,
         TextinputModalComponent,
         FormatLongTextPipe,
         HeavyLabelPrimaryDirective,
@@ -167,6 +170,8 @@ import { MapboxPinsComponent } from './mapbox-pins/mapbox-pins.component';
         Link2Directive,
         ListFilterPipe,
         DefaultPipe,
+        PersonNamePipe,
+        FarmerIdentityPipe,
         TextinputModalComponent,
         FormatDatePipe,
         AccordionComponent,

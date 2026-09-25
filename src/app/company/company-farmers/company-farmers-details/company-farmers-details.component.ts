@@ -173,14 +173,14 @@ export class CompanyFarmersDetailsComponent implements OnInit, OnDestroy {
   constructor(
       private location: Location,
       private route: ActivatedRoute,
+      private router: Router,
       private companyService: CompanyControllerService,
       private globalEventsManager: GlobalEventManagerService,
       private selUserCompanyService: SelectedUserCompanyService,
       public theme: ThemeService,
       private fileSaverService: FileSaverService,
       private httpClient: HttpClient,
-      private selfOnboardingService: SelfOnboardingService,
-      private router: Router
+      private selfOnboardingService: SelfOnboardingService
   ) { }
 
   static ApiUserCustomerCooperativeCreateEmptyObject(): ApiUserCustomerCooperative {
@@ -597,6 +597,10 @@ export class CompanyFarmersDetailsComponent implements OnInit, OnDestroy {
 
           if (!stayOnPage) {
             this.dismiss();
+          } else if (!this.update && res.data?.id) {
+            // Saving a plot on a new farmer creates the farmer. Continue on its edit page, so the next
+            // save updates it instead of adding the same farmer again (with the saved plot ids).
+            await this.router.navigate(['..', 'edit', res.data.id], { relativeTo: this.route, replaceUrl: true });
           } else {
             this.ngOnInit();
           }

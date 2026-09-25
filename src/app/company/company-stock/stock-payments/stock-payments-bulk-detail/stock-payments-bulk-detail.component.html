@@ -105,7 +105,7 @@
                                 [readOnly]=this.update>
                             <ng-container *ngIf="submitted">
                                 <div *ngIf="bulkPaymentForm.get('paymentDescription').errors as errors" class="sc-invalid-feedback">
-                                    <div *ngIf="errors.required" i18n-label="@@productLabelStockBulkPayments.textinput.paymentDescription.error">
+                                    <div *ngIf="errors.required" i18n="@@productLabelStockBulkPayments.textinput.paymentDescription.error">
                                         <span>
                                           Payment description is required
                                         </span>
@@ -162,7 +162,7 @@
                                     [readOnly]=this.update>
                                 <ng-container *ngIf="submitted">
                                     <div *ngIf="bulkPaymentForm.get('additionalCostDescription').errors as errors" class="sc-invalid-feedback">
-                                        <div *ngIf="errors.required" i18n-label="@@productLabelStockBulkPayments.textinput.additionalCostDescription.error">
+                                        <div *ngIf="errors.required" i18n="@@productLabelStockBulkPayments.textinput.additionalCostDescription.error">
                                             Description is required
                                         </div>
                                     </div>
