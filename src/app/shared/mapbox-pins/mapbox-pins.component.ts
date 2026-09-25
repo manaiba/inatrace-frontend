@@ -83,6 +83,8 @@ export class MapboxPinsComponent implements AfterViewInit, DoCheck, OnDestroy {
   private renderedMarkers: Array<any> = [];
   private lastSignature: string = null;
   private resizeObserver: any;
+  // Once the user pans or zooms, stop re-fitting the view on container resizes
+  private userMoved = false;
 
   constructor(private zone: NgZone) { }
 
@@ -113,7 +115,34 @@ export class MapboxPinsComponent implements AfterViewInit, DoCheck, OnDestroy {
   ngOnDestroy(): void {
     this.resizeObserver?.disconnect();
     this.renderedMarkers.forEach(m => m.remove());
-    this.map?.remove();
+    this.removeMapWhenSettled();
+  }
+
+  // Removing a map while tiles are still loading makes mapbox-gl throw asynchronously
+  // ("Cannot read properties of undefined (reading 'send')"), so wait until it is idle
+  private removeMapWhenSettled(): void {
+    const map = this.map;
+    if (!map) {
+      return;
+    }
+    let removed = false;
+    const remove = () => {
+      if (removed) {
+        return;
+      }
+      removed = true;
+      try {
+        map.remove();
+      } catch (e) {
+        // the map is being discarded anyway
+      }
+    };
+    if (map.loaded()) {
+      remove();
+    } else {
+      map.once('idle', remove);
+      setTimeout(remove, 10000);
+    }
   }
 
   /** Fits the view to the given points (or fitPoints / the markers) with a minimum extent. */
@@ -143,6 +172,9 @@ export class MapboxPinsComponent implements AfterViewInit, DoCheck, OnDestroy {
       accessToken: environment.mapboxAccessToken,
       container: this.mapContainer.nativeElement,
       style: 'mapbox://styles/mapbox/streets-v12',
+      // streets-v12 defaults to the globe projection, where fitBounds ignores the padding and
+      // puts the outermost points on the edge; these small maps read better flat anyway
+      projection: 'mercator',
       center: [this.defaultCenter.lng, this.defaultCenter.lat],
       zoom: this.defaultZoom,
       doubleClickZoom: this.addOn !== 'dblclick'
@@ -162,6 +194,12 @@ export class MapboxPinsComponent implements AfterViewInit, DoCheck, OnDestroy {
       });
     }
 
+    this.map.on('movestart', (e: any) => {
+      if (e.originalEvent) {
+        this.userMoved = true;
+      }
+    });
+
     this.map.on('load', () => {
       this.loaded = true;
       this.map.resize();
@@ -173,7 +211,15 @@ export class MapboxPinsComponent implements AfterViewInit, DoCheck, OnDestroy {
     // The map is often created inside collapsed or hidden sections; keep the canvas sized
     const ResizeObserverImpl = (window as any).ResizeObserver;
     if (ResizeObserverImpl) {
-      this.resizeObserver = new ResizeObserverImpl(() => this.map?.resize());
+      this.resizeObserver = new ResizeObserverImpl(() => {
+        if (!this.map) {
+          return;
+        }
+        this.map.resize();
+        if (this.loaded && !this.userMoved) {
+          this.fitBounds();
+        }
+      });
       this.resizeObserver.observe(this.mapContainer.nativeElement);
     }
   }
