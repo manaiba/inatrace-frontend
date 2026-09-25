@@ -2,7 +2,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GoogleMapsModule } from '@angular/google-maps';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
@@ -67,7 +66,6 @@ import { UserBoxComponent } from './user-box/user-box.component';
         NgbTimepickerModule,
         NgbDropdownModule,
         NgbPaginationModule,
-        GoogleMapsModule,
         DragDropModule,
         NgbTooltipModule
     ],

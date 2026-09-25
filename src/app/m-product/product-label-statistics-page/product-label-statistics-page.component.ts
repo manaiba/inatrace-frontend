@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductControllerService } from 'src/api/api/productController.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { GoogleMap } from '@angular/google-maps';
+import { MapPin } from '../../shared/mapbox-pins/mapbox-pins.component';
 import { FormGroup, FormControl } from '@angular/forms';
 import { GlobalEventManagerService } from 'src/app/core/global-event-manager.service';
 import { take } from 'rxjs/operators';
@@ -14,23 +14,14 @@ import { take } from 'rxjs/operators';
 })
 export class ProductLabelStatisticsPageComponent implements OnInit, OnDestroy {
 
-  @ViewChild(GoogleMap) set map(map: GoogleMap) {
-    if (map) {
-      this.gMap = map;
-      this.fitBounds();
-    }
-  };
-
-  gMap = null;
-  markers: any = [];
   defaultCenter = {
     lat: 37.0769238,
     lng: 24.2160421
   };
   defaultZoom = 2;
-  zoomForOnePin = 10;
-  bounds: any;
-  isGoogleMapsLoaded: boolean = false;
+
+  // Markers of the location types currently ticked below the map
+  visibleMarkers: Array<MapPin> = [];
 
   initialBoundsAuth: any = [];
   initialBoundsOrig: any = [];
@@ -67,13 +58,7 @@ export class ProductLabelStatisticsPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getStatistics();
 
-    let sub2 = this.globalEventsManager.loadedGoogleMapsEmitter.subscribe(
-      loaded => {
-        if (loaded) this.isGoogleMapsLoaded = true;
-      },
-      error => { }
-    )
-    this.subs.push(sub2);
+    this.subs.push(this.locationsForm.valueChanges.subscribe(() => this.fitBounds()));
   }
 
   ngOnDestroy(): void {
@@ -175,42 +160,13 @@ export class ProductLabelStatisticsPageComponent implements OnInit, OnDestroy {
   }
 
 
+  // Shows the ticked location types; the map re-fits itself when its markers change
   fitBounds() {
-    if (!this.gMap) return;
-    this.bounds = new google.maps.LatLngBounds()
-    if(this.locationsForm.get('visitLoc').value) {
-      for (let bound of this.initialBoundsVisit) {
-        this.bounds.extend(bound);
-      }
-    }
-    if (this.locationsForm.get('authLoc').value) {
-      for (let bound of this.initialBoundsAuth) {
-        this.bounds.extend(bound);
-      }
-    }
-    if (this.locationsForm.get('origLoc').value) {
-      for (let bound of this.initialBoundsOrig) {
-        this.bounds.extend(bound);
-      }
-    }
-    if (this.bounds.isEmpty()) {
-      this.gMap.googleMap.setCenter(this.defaultCenter)
-      this.gMap.googleMap.setZoom(this.defaultZoom);
-      return;
-    }
-    let center = this.bounds.getCenter()
-    let offset = 0.02
-    let northEast = new google.maps.LatLng(
-      center.lat() + offset,
-      center.lng() + offset
-    )
-    let southWest = new google.maps.LatLng(
-      center.lat() - offset,
-      center.lng() - offset
-    )
-    let minBounds = new google.maps.LatLngBounds(southWest, northEast)
-    this.gMap.fitBounds(this.bounds.union(minBounds))
-
+    this.visibleMarkers = [
+      ...(this.locationsForm.get('visitLoc').value ? this.visitMarkers : []),
+      ...(this.locationsForm.get('authLoc').value ? this.authMarkers : []),
+      ...(this.locationsForm.get('origLoc').value ? this.origMarkers : [])
+    ];
   }
 
 }

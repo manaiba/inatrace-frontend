@@ -10,7 +10,6 @@
     window['env']['relativeFileUploadUrlManualType'] = '${RELATIVE_FILE_UPLOAD_URL_MANUAL_TYPE}';
     window['env']['relativeImageUploadUrl'] = '${RELATIVE_IMAGE_UPLOAD_URL}';
     window['env']['relativeImageUploadUrlAllSizes'] = '${RELATIVE_IMAGE_UPLOAD_URL_ALL_SIZES}'
-    window['env']['googleMapsApiKey'] = '${GOOGLE_MAPS_API_KEY}';
     window['env']['tokenForPublicLogRoute'] = '${TOKEN_FOR_PUBLIC_LOG_ROUTE}';
     window['env']['mapboxAccessToken'] = '${MAPBOX_ACCESS_TOKEN}';
     window['env']['whispApiKey'] = '${WHISP_API_KEY}';

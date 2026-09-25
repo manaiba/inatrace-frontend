@@ -2,7 +2,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GoogleMapsModule } from '@angular/google-maps';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbDropdownModule, NgbPaginationModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { QRCodeModule } from 'angular2-qrcode';
@@ -46,7 +45,6 @@ import { ProductCommonModule } from '../product-common/product-common.module';
     NgbTimepickerModule,
     NgbDropdownModule,
     NgbPaginationModule,
-    GoogleMapsModule,
     DragDropModule,
   ]
 })

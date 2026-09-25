@@ -1,0 +1,27 @@
+.mapbox-pins {
+  position: relative;
+  width: 100%;
+}
+
+.mapbox-pins-canvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.mapbox-pins-unavailable {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  background: #f2f2f2;
+  color: #666;
+}

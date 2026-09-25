@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GoogleMapsModule } from '@angular/google-maps';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbDropdownModule, NgbPaginationModule, NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
@@ -74,8 +73,8 @@ import { QrCodeRedirectComponent } from './qr-code-redirect/qr-code-redirect.com
     QRCodeModule,
     NgbTimepickerModule,
     NgbDropdownModule,
-    NgbPaginationModule,
-    GoogleMapsModule
+    NgbPaginationModule
+
   ],
   exports: [
     BottomButtonsComponent,

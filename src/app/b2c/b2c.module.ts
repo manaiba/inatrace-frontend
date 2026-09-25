@@ -12,7 +12,6 @@ import { B2cQualityComponent } from './b2c-page/b2c-quality/b2c-quality.componen
 import { B2cFeedbackComponent } from './b2c-page/b2c-feedback/b2c-feedback.component';
 import { B2cTermsComponent } from './b2c-page/b2c-terms/b2c-terms.component';
 import { B2cPrivacyComponent } from './b2c-page/b2c-privacy/b2c-privacy.component';
-import { GoogleMapsModule } from '@angular/google-maps';
 import { ComponentsModule } from '../components/components.module';
 import { SharedModule } from '../shared/shared.module';
 import { B2cCarouselComponent } from './b2c-components/b2c-carousel/b2c-carousel.component';
@@ -35,7 +34,6 @@ import { B2cCarouselComponent } from './b2c-components/b2c-carousel/b2c-carousel
     imports: [
         CommonModule,
         B2cRoutingModule,
-        GoogleMapsModule,
         ComponentsModule,
         SharedModule
     ],

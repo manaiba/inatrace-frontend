@@ -1,17 +1,15 @@
 <main class="af-b2c-main">
     <h1 [style.color]="b2cSettings.headingColor" [style.font-family]="b2cSettings.textFont ? 'custom-text' : ''" i18n="@@frontPage.journey.title">Product journey</h1>
 
-    <google-map
-            *ngIf="isGoogleMapsLoaded"
+    <app-mapbox-pins
             height="380px"
-            width="100%">
-        <map-marker
-            *ngFor="let marker of markers; index as i"
-            [position]="marker.position"
-            [options]="mapMarkerOption">
-        </map-marker>
-        <map-polyline [path]="locations" [options]="polyOptions"></map-polyline>
-    </google-map>
+            markerStyle="circle"
+            [markers]="markers"
+            [path]="locations"
+            [fitPoints]="locations"
+            [defaultCenter]="defaultCenter"
+            [defaultZoom]="defaultZoom">
+    </app-mapbox-pins>
 
     <ul class="af-journey-wrapper">
 

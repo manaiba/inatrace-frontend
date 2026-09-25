@@ -1,8 +1,8 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { B2cPageComponent } from '../b2c-page.component';
 import { ApiBusinessToCustomerSettings } from '../../../../api/model/apiBusinessToCustomerSettings';
 import { Subscription } from 'rxjs';
-import { GoogleMap } from '@angular/google-maps';
+import { MapPin, MapPoint } from '../../../shared/mapbox-pins/mapbox-pins.component';
 import { ApiHistoryTimelineItem } from '../../../../api/model/apiHistoryTimelineItem';
 import { HistoryTimelineItem } from './model';
 import { GlobalEventManagerService } from '../../../core/global-event-manager.service';
@@ -27,16 +27,13 @@ export class B2cJourneyComponent implements OnInit {
   b2cSettings: ApiBusinessToCustomerSettings;
 
   subs: Subscription[] = [];
-  isGoogleMapsLoaded = false;
 
   producerName = '';
   historyItems: HistoryTimelineItem[] = [];
 
-  locations: google.maps.LatLngLiteral[] = [];
+  locations: MapPoint[] = [];
 
-  markers: any = [];
-  initialBounds: any = [];
-  bounds: any;
+  markers: MapPin[] = [];
 
   defaultCenter = {
     lat: 5.274054,
@@ -44,58 +41,7 @@ export class B2cJourneyComponent implements OnInit {
   };
   defaultZoom = 2;
 
-  lineSymbol = {
-    path: 'M 0,-1 0,1',
-    strokeOpacity: 1,
-    scale: 2,
-    strokeColor: '#25265E'
-  };
-
-  options: google.maps.PolylineOptions = {
-    icons: [
-      {
-        icon: this.lineSymbol,
-        offset: '0',
-        repeat: '20px'
-      },
-    ],
-    strokeOpacity: 0,
-  };
-
-  gMap: GoogleMap = null;
-
-  mapMarkerOption: any;
-
-  @ViewChild(GoogleMap)
-  set map(map: GoogleMap) {
-    if (map) {
-      this.gMap = map;
-      this.mapMarkerOption = {
-        icon: {
-          path: google.maps.SymbolPath.CIRCLE,
-          scale: 3,
-          fillColor: '#25265E',
-          fillOpacity: 1,
-          strokeColor: '#25265E',
-        }
-      };
-      setTimeout(() => this.googleMapsIsLoaded(map));
-    }
-  }
-
-  get map(): GoogleMap {
-    return this.gMap;
-  }
-
   ngOnInit(): void {
-    const sub2 = this.globalEventManager.loadedGoogleMapsEmitter.subscribe(
-        loaded => {
-          if (loaded) { this.isGoogleMapsLoaded = true; }
-        },
-        () => { }
-    );
-    this.subs.push(sub2);
-
     this.initLabel();
     this.data().then();
   }
@@ -177,45 +123,6 @@ export class B2cJourneyComponent implements OnInit {
         });
       }
     }
-  }
-
-  googleMapsIsLoaded(map) {
-    this.isGoogleMapsLoaded = true;
-    for (const [i, loc] of this.locations.entries()) {
-      const tmp = {
-        position: {
-          lat: loc.lat,
-          lng: loc.lng,
-          type: i === 0 || i === this.locations.length - 1 ? 'bound' : 'middle'
-        },
-      };
-      this.initialBounds.push(tmp.position);
-    }
-    this.bounds = new google.maps.LatLngBounds();
-    for (const bound of this.initialBounds) {
-      this.bounds.extend(bound);
-    }
-    if (this.bounds.isEmpty()) {
-      map.googleMap.setCenter(this.defaultCenter);
-      map.googleMap.setZoom(this.defaultZoom);
-      return;
-    }
-    const center = this.bounds.getCenter();
-    const offset = 0.02;
-    const northEast = new google.maps.LatLng(
-        center.lat() + offset,
-        center.lng() + offset
-    );
-    const southWest = new google.maps.LatLng(
-        center.lat() - offset,
-        center.lng() - offset
-    );
-    const minBounds = new google.maps.LatLngBounds(southWest, northEast);
-    map.fitBounds(this.bounds.union(minBounds));
-  }
-
-  get polyOptions() {
-    return this.options;
   }
 
   formatDate(date) {

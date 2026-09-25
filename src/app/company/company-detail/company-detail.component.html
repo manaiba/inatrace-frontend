@@ -56,14 +56,14 @@
               <textinput [form]="$any(companyDetailForm.get('abbreviation'))" label="Company abbreviation"
                 style="width: 100%"
                 hideAsterisk="true"
-                placeholder="Enter company abbreviation in 3-6 characters"
+                placeholder="Enter company abbreviation in 3-10 characters"
                 i18n-label="@@companyDetail.textinput.companyAbbreviation.label"
                 i18n-placeholder="@@companyDetail.textinput.companyAbbreviation.placeholder"
                 [isInvalid]="submitted && companyDetailForm.get('abbreviation').invalid">
                 <div *ngIf="submitted && companyDetailForm.get('abbreviation').invalid" class="sc-invalid-feedback">
                   <div *ngIf="companyDetailForm.get('abbreviation').errors.minlength || companyDetailForm.get('abbreviation').errors.maxlength" i18n="@@companyDetail.textinput.companyAbbreviation.errorLength">
                     <span>
-                      Company abbreviation can be empty or should contain 3-6 characters
+                      Company abbreviation can be empty or should contain 3-10 characters
                     </span>
                   </div>
                 </div>

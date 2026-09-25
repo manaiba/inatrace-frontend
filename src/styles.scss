@@ -4185,3 +4185,38 @@ input.toggle-switch-checkbox:checked + label.toggle-switch-label:after {
 .geoid-content {
   word-break: break-all;
 }
+
+/* Pins drawn by app-mapbox-pins (created outside Angular, so styled globally) */
+.mapbox-pins-labelled {
+  width: 30px;
+  height: 42px;
+  cursor: pointer;
+}
+
+.mapbox-pins-labelled span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  color: #fff;
+  background: #EC6E00;
+  border: solid 2px;
+  border-radius: 50% 50% 50% 0;
+  box-shadow: 0 0 2px #000;
+  transform: rotateZ(-45deg);
+}
+
+.mapbox-pins-labelled b {
+  transform: rotateZ(45deg);
+}
+
+.mapbox-pins-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 2px #000;
+  cursor: pointer;
+}

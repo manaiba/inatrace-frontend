@@ -2,7 +2,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GoogleMapsModule } from '@angular/google-maps';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
     NgbDropdownModule,
@@ -80,7 +79,6 @@ import { NewProductModalComponent } from './product-list/new-product-modal/new-p
         NgbTimepickerModule,
         NgbDropdownModule,
         NgbPaginationModule,
-        GoogleMapsModule,
         DragDropModule,
         ProductCommonModule,
         NgbTooltipModule

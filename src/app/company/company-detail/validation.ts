@@ -89,7 +89,7 @@ export const ApiCompanyGetValidationScheme = {
   validators: [],
   fields: {
     abbreviation: {
-      validators: [Validators.minLength(3), Validators.maxLength(6)]
+      validators: [Validators.minLength(3), Validators.maxLength(10)]
     },
     about: {
       validators: [Validators.required, Validators.maxLength(2000)]
@@ -148,7 +148,7 @@ export const TranslateApiCompanyGetValidationScheme = {
   validators: [],
   fields: {
     abbreviation: {
-      validators: [Validators.minLength(3), Validators.maxLength(6)]
+      validators: [Validators.minLength(3), Validators.maxLength(10)]
     },
     about: {
       validators: [Validators.maxLength(2000)]

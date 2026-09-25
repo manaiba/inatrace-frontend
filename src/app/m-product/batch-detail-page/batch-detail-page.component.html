@@ -109,26 +109,16 @@
 
             <app-closable
               [nonClosable]="true">
-              <google-map
-                *ngIf="isGoogleMapsLoaded"
-                width="100%"
+              <app-mapbox-pins
                 height="380px"
-                [zoom]="defaultZoom"
-                [center]="defaultCenter"
-                [options]="{disableDoubleClickZoom: true}"
-                (mapDblclick)="dblClick($event)">
-                <map-marker
-                  #gMarker="mapMarker"
-                  *ngFor="let marker of markers; index as i"
-                  [position]="marker.position"
-                  [label]="marker.label"
-                  [options]="{draggable:true}"
-                  (mapRightclick)="removeOriginLocation(i)"
-                  (mapDragend)="dragend($event, i)"
-                  (mapClick)="openInfoWindow(gMarker, marker)">
-                </map-marker>
-                <map-info-window>{{gInfoWindowText}}</map-info-window>
-              </google-map>
+                addOn="dblclick"
+                [draggable]="true"
+                [markers]="markers"
+                [fitPoints]="initialBounds"
+                (mapAdd)="addPin($event)"
+                (markerDragEnd)="dragend($event)"
+                (markerRemove)="removeOriginLocation($event)">
+              </app-mapbox-pins>
               <small i18n="@@batchDetail.locations.small">
                 Double click on the map to drop a pin and mark the locations of farmers / suppliers. Indicate the number of farmers / suppliers you work with directly or indirectly at each location. You can also name each location.
               </small>

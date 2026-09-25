@@ -1,5 +1,5 @@
 import { FormControl, FormGroup } from '@angular/forms';
-import { of, Subject } from 'rxjs';
+import { of } from 'rxjs';
 import { LocationFormNewComponent } from '../../../shared/location-form-new/location-form-new.component';
 import { CompanyDetailFacilityAddComponent } from './company-detail-facility-add.component';
 
@@ -7,15 +7,17 @@ describe('CompanyDetailFacilityAddComponent location submission', () => {
   let component: CompanyDetailFacilityAddComponent;
   let facilityController: jasmine.SpyObj<any>;
   let location: jasmine.SpyObj<any>;
+  let globalEventsManager: jasmine.SpyObj<any>;
   let mapForm: LocationFormNewComponent;
 
   beforeEach(() => {
     facilityController = jasmine.createSpyObj('FacilityControllerService', ['createOrUpdateFacility']);
     location = jasmine.createSpyObj('Location', ['back']);
+    globalEventsManager = jasmine.createSpyObj('GlobalEventManagerService', ['push']);
     component = new CompanyDetailFacilityAddComponent(
       {snapshot: {params: {id: '42'}}} as any,
       location,
-      null,
+      globalEventsManager,
       facilityController,
       null,
       null,
@@ -41,6 +43,7 @@ describe('CompanyDetailFacilityAddComponent location submission', () => {
     expect(component.submitted).toBe(true);
     expect(component.form.invalid).toBe(true);
     expect(facilityController.createOrUpdateFacility).not.toHaveBeenCalled();
+    expect(globalEventsManager.push).toHaveBeenCalledWith(jasmine.objectContaining({notificationType: 'error'}));
   });
 
   it('submits a new public facility with valid coordinates', () => {
@@ -71,9 +74,7 @@ describe('CompanyDetailFacilityAddComponent location submission', () => {
   });
 
   function initializeMapValidation(form: FormGroup): void {
-    mapForm = new LocationFormNewComponent(null, {
-      loadedGoogleMapsEmitter: new Subject<boolean>()
-    } as any);
+    mapForm = new LocationFormNewComponent(null, null);
     mapForm.form = form;
     mapForm.ngOnInit();
   }

@@ -62,7 +62,6 @@ import { ScrollContainerDirective } from './directives/scroll-container.directiv
 import { DatepickerComponent } from './datepicker/datepicker.component';
 import { SearchTextinputComponent } from './search-textinput/search-textinput.component';
 import { LocationFormComponent } from './location-form/location-form.component';
-import { GoogleMapsModule } from '@angular/google-maps';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { CompanyDocumentItemComponent } from './company-document-item/company-document-item.component';
 import { CompanyDocumentCategoryFilterPipe } from './pipes/company-document-category-filter.pipe';
@@ -73,6 +72,7 @@ import { ColorInputComponent } from './color-input/color-input.component';
 import { DocumentPreviewComponent } from './document-preview/document-preview.component';
 import { ToggleSwitchComponent } from './toggle-switch/toggle-switch.component';
 import { MapComponent } from './map/map.component';
+import { MapboxPinsComponent } from './mapbox-pins/mapbox-pins.component';
 
 @NgModule({
     declarations: [
@@ -125,6 +125,7 @@ import { MapComponent } from './map/map.component';
         SearchTextinputComponent,
         LocationFormComponent,
         MapComponent,
+        MapboxPinsComponent,
         ContactFormComponent,
         CertificationAndStandardItemComponent,
         CompanyDocumentItemComponent,
@@ -152,7 +153,6 @@ import { MapComponent } from './map/map.component';
         DragDropModule,
         ReactiveFormsModule,
         FormsModule,
-        GoogleMapsModule,
         HttpClientModule,
         RouterModule,
         // ComponentsModule
@@ -200,6 +200,7 @@ import { MapComponent } from './map/map.component';
         SearchTextinputComponent,
         LocationFormComponent,
         MapComponent,
+        MapboxPinsComponent,
         CertificationAndStandardItemComponent,
         CompanyDocumentItemComponent,
         CompanyDocumentCategoryFilterPipe,

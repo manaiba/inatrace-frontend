@@ -33,8 +33,7 @@ Running the INATrace web frontend against a local backend.
    5. `relativeFileUploadUrlManualType`: `'/api/common/document'`
    6. `relativeImageUploadUrl`: `'/api/common/image'`
    7. `relativeImageUploadUrlAllSizes`: `'/api/common/image'`
-   8. `googleMapsApiKey`: have to obtain a key yourself
-   9. `mapboxAccessToken`: have to obtain a key yourself; the plot map does not draw without it
+   8. `mapboxAccessToken`: a Mapbox public (`pk.`) token; every map in the app uses Mapbox, so none draws without it. Restrict the token to your domains in the Mapbox account
 
 5. If using Beyco integration, add the following configuration keys in `environment.ts` (the values should be obtained from Beyco):
    1. `beycoAuthURL`: `url`

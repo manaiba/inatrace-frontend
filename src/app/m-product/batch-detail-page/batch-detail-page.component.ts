@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
 import { take } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { GoogleMap, MapInfoWindow } from '@angular/google-maps';
+import { MapboxPinsComponent, MapPoint } from '../../shared/mapbox-pins/mapbox-pins.component';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { PrefillLocationsFromProductModalComponent } from './prefill-locations-from-product-modal/prefill-locations-from-product-modal.component';
 import { GlobalEventManagerService } from 'src/app/core/global-event-manager.service';
@@ -23,15 +23,7 @@ import { NgbModalImproved } from 'src/app/core/ngb-modal-improved/ngb-modal-impr
 })
 export class BatchDetailPageComponent implements OnInit, OnDestroy {
 
-  @ViewChild(GoogleMap) set map(map: GoogleMap) {
-    if (map) {
-      this.gMap = map;
-      this.fitBounds();}
-  };
-
-  @ViewChild(MapInfoWindow) set infoWindow(infoWindow: MapInfoWindow) {
-    if (infoWindow) this.gInfoWindow = infoWindow;
-  };
+  @ViewChild(MapboxPinsComponent) pinsMap: MapboxPinsComponent;
 
   public canDeactivate(): boolean {
     return !this.batchDetailForm || !(this.changed)
@@ -40,19 +32,8 @@ export class BatchDetailPageComponent implements OnInit, OnDestroy {
   goToLink: string = this.router.url.substr(0, this.router.url.lastIndexOf("/"));
 
   faTrashAlt = faTrashAlt;
-  gInfoWindow = null;
-  gMap = null;
-  gInfoWindowText: string = "";
   markers: any = [];
-  defaultCenter = {
-    lat: 5.274054,
-    lng: 21.514503
-  };
-  defaultZoom = 3;
-  zoomForOnePin = 10;
-  bounds: any;
   initialBounds: any = [];
-  isGoogleMapsLoaded: boolean = false;
 
   batch: ApiProductLabelBatch = {};
 
@@ -84,13 +65,6 @@ export class BatchDetailPageComponent implements OnInit, OnDestroy {
       this.getBatch();
       this.title = $localize`:@@batchDetail.title.edit:Edit batch`;
     }
-    let sub2 = this.globalEventsManager.loadedGoogleMapsEmitter.subscribe(
-      loaded => {
-        if (loaded) this.isGoogleMapsLoaded = true;
-      },
-      error => { }
-    )
-    this.subs.push(sub2);
 
   }
 
@@ -198,27 +172,7 @@ export class BatchDetailPageComponent implements OnInit, OnDestroy {
 
   fitBounds() {
     if (this.initialBounds.length == 0) return;
-    this.bounds = new google.maps.LatLngBounds()
-    for (let bound of this.initialBounds) {
-      this.bounds.extend(bound);
-    }
-    if (this.bounds.isEmpty()) {
-      this.gMap.googleMap.setCenter(this.defaultCenter)
-      this.gMap.googleMap.setZoom(this.defaultZoom);
-      return;
-    }
-    let center = this.bounds.getCenter()
-    let offset = 0.02
-    let northEast = new google.maps.LatLng(
-      center.lat() + offset,
-      center.lng() + offset
-    )
-    let southWest = new google.maps.LatLng(
-      center.lat() - offset,
-      center.lng() - offset
-    )
-    let minBounds = new google.maps.LatLngBounds(southWest, northEast)
-    this.gMap.fitBounds(this.bounds.union(minBounds))
+    this.pinsMap?.fitBounds(this.initialBounds);
   }
 
   //origin location helper methods
@@ -306,17 +260,12 @@ export class BatchDetailPageComponent implements OnInit, OnDestroy {
     this.markers.splice(index, 1, tmp);
   }
 
-  dblClick(event: google.maps.MouseEvent) {
-    this.addOriginLocations(event.latLng.toJSON());
+  addPin(position: MapPoint) {
+    this.addOriginLocations(position);
   }
 
-  dragend(event, index) {
-    this.updateMarkerLocation(event.latLng.toJSON(), index);
-  }
-
-  openInfoWindow(gMarker, marker) {
-    this.gInfoWindowText = marker.infoText;
-    this.gInfoWindow.open(gMarker);
+  dragend(event: { index: number, position: MapPoint }) {
+    this.updateMarkerLocation(event.position, event.index);
   }
 
   onKey(event, index) {

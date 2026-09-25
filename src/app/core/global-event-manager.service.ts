@@ -19,13 +19,6 @@ export class GlobalEventManagerService {
   private showLoadingSpinnerSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   showLoadingSpinnerEmitter: Observable<boolean> = this.showLoadingSpinnerSubject.asObservable();
 
-  private loadedGoogleMapsSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public loadedGoogleMapsEmitter: Observable<boolean> = this.loadedGoogleMapsSubject.asObservable();
-
-  loadedGoogleMaps(val: boolean) {
-    this.loadedGoogleMapsSubject.next(val);
-  }
-
   constructor(
     private toastr: ToastrService,
     private messageModalService: MessageModalService

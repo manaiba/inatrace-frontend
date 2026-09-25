@@ -292,17 +292,18 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       const openInGeoIdLabel = $localize`:@@map.modal.openInWhisp.title:Open in Whisp`;
       const certificationLabel = $localize`:@@map.modal.certification.title:Certification:`;
       let euOrganic = $localize`:@@map.modal.eu.organic.title:EU Organic`;
-      const name = plot.plotName;
-      let crop = plot.crop?.name;
-      if (crop === undefined) {
+      // Plot fields are user input and end up in setHTML below, so escape them
+      const name = this.escapeHtml(plot.plotName);
+      let crop = this.escapeHtml(plot.crop?.name);
+      if (plot.crop?.name === undefined) {
         crop = '/';
       }
-      let size: any = plot.size;
-      if (size === undefined) {
+      let size: any = this.escapeHtml(plot.size);
+      if (plot.size === undefined) {
         size = '/';
       }
-      let unit = plot.unit;
-      if (unit === undefined) {
+      let unit = this.escapeHtml(plot.unit);
+      if (plot.unit === undefined) {
         unit = '';
       }
 
@@ -312,7 +313,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
         const refreshText = $localize`:@@map.modal.button.refresh.title:Refresh`;
         geoId = `<button id="${buttonId}" class="btn btn-sm popup-button">${refreshText}</button>`;
       } else {
-        geoId = `<span class="geoid-content">${geoId}</span>`;
+        geoId = `<span class="geoid-content">${this.escapeHtml(geoId)}</span>`;
       }
       
       const buttonOpenGeoIdLink = 'open-whisp-a-' + idx;
@@ -625,6 +626,18 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       longitude: coordinates.lng,
       latitude: coordinates.lat
     });
+  }
+
+  private escapeHtml(value: any): string {
+    if (value === null || value === undefined) {
+      return '';
+    }
+    return String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
 }

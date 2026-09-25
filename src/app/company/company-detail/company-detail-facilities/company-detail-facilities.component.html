@@ -93,19 +93,11 @@
 
           <div style="height: 2rem;"></div>
 
-          <google-map
-                  *ngIf="isGoogleMapsLoaded"
+          <app-mapbox-pins
                   height="380px"
-                  width="100%">
-            <map-marker
-                #gMarker="mapMarker"
-                *ngFor="let marker of markers; index as i"
-                [position]="marker.position"
-                [label]="marker.label"
-                (mapClick)="openInfoWindow(gMarker, marker)">
-            </map-marker>
-            <map-info-window>{{gInfoWindowText}}</map-info-window>
-          </google-map>
+                  [autoFit]="true"
+                  [markers]="markers">
+          </app-mapbox-pins>
 
           <div style="height: 2rem;"></div>
         </div>

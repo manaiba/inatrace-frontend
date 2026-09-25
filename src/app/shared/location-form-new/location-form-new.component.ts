@@ -1,12 +1,12 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CountryService } from '../../shared-services/countries.service';
 import { GlobalEventManagerService } from '../../core/global-event-manager.service';
 import { FormGroup, Validators } from '@angular/forms';
 import _ from 'lodash-es';
 import { EnumSifrant } from '../../shared-services/enum-sifrant';
-import { GoogleMap } from '@angular/google-maps';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { MapPin, MapPoint } from '../mapbox-pins/mapbox-pins.component';
 
 @Component({
   selector: 'app-location-form-new',
@@ -21,20 +21,8 @@ export class LocationFormNewComponent implements OnInit, OnDestroy {
   @Input()
   submitted = false;
 
-  @ViewChild(GoogleMap) set map(map: GoogleMap) {
-    if (map) { this.gMap = map; this.fitBounds(); }
-  }
-
-  gMap = null;
-  isGoogleMapsLoaded = false;
-  marker = null;
-  bounds;
-  initialBounds = [];
-  defaultCenter = {
-    lat: 5.274054,
-    lng: 21.514503
-  };
-  defaultZoom = 3;
+  // Pin shown on the map; lat/lng live in the form, this only mirrors them
+  markers: Array<MapPin> = [];
 
   private destroy$ = new Subject<void>();
 
@@ -51,14 +39,14 @@ export class LocationFormNewComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(value => this.updateCoordinateValidators(value));
 
-    this.globalEventsManager.loadedGoogleMapsEmitter
+    this.syncMarkerFromForm();
+    // Keep the pin in step with coordinates typed into the inputs
+    this.latitudeControl.valueChanges
       .pipe(takeUntil(this.destroy$))
-      .subscribe(loaded => {
-      if (loaded) {
-        this.isGoogleMapsLoaded = true;
-        this.initializeMarker();
-      }
-    });
+      .subscribe(() => this.syncMarkerFromForm());
+    this.longitudeControl.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => this.syncMarkerFromForm());
   }
 
   ngOnDestroy(): void {
@@ -74,23 +62,10 @@ export class LocationFormNewComponent implements OnInit, OnDestroy {
     return this.isMapPinRequired && (this.latitudeControl.invalid || this.longitudeControl.invalid);
   }
 
-  initializeMarker() {
-    if (!this.form.get('facilityLocation.latitude') || !this.form.get('facilityLocation.longitude')) {
-      return;
-    }
-    const lat = this.form.get('facilityLocation.latitude').value;
-    const lng = this.form.get('facilityLocation.longitude').value;
-    if (lat == null || lng == null) {
-      return;
-    }
-    const tmp = {
-      position: {
-        lat,
-        lng
-      }
-    };
-    this.marker = tmp;
-    this.initialBounds.push(tmp.position);
+  syncMarkerFromForm() {
+    const lat = this.toNumber(this.latitudeControl.value);
+    const lng = this.toNumber(this.longitudeControl.value);
+    this.markers = (lat == null || lng == null) ? [] : [{ position: { lat, lng } }];
   }
 
   doShowVillage(): boolean {
@@ -105,63 +80,27 @@ export class LocationFormNewComponent implements OnInit, OnDestroy {
     return obj;
   }
 
-  dblClick(event: google.maps.MouseEvent) {
-    if (this.marker) {
-      this.updateMarkerLocation(event.latLng.toJSON());
-    } else {
-      this.marker = {
-        position: event.latLng.toJSON()
-      };
-      this.updateLatLng();
-    }
+  placeMarker(position: MapPoint) {
+    this.setLatLng(position);
   }
 
   removeMarker() {
-    this.marker = null;
-    this.updateLatLng();
+    this.setLatLng(null);
   }
 
-  updateLatLng() {
-    this.form.get('facilityLocation.latitude').setValue(this.marker ? this.marker.position.lat : null);
-    this.form.get('facilityLocation.longitude').setValue(this.marker ? this.marker.position.lng : null);
-
-    this.form.get('facilityLocation.latitude').markAsDirty();
-    this.form.get('facilityLocation.longitude').markAsDirty();
+  private setLatLng(position: MapPoint) {
+    this.latitudeControl.setValue(position ? position.lat : null);
+    this.longitudeControl.setValue(position ? position.lng : null);
+    this.latitudeControl.markAsDirty();
+    this.longitudeControl.markAsDirty();
   }
 
-  updateMarkerLocation(location) {
-    this.marker = {
-      position: location
-    };
-    this.updateLatLng();
-  }
-
-  dragEnd(event) {
-    this.updateMarkerLocation(event.latLng.toJSON());
-  }
-
-  fitBounds() {
-    this.bounds = new google.maps.LatLngBounds();
-    for (const bound of this.initialBounds) {
-      this.bounds.extend(bound);
+  private toNumber(value): number {
+    if (value === null || value === undefined || value === '') {
+      return null;
     }
-    if (this.bounds.isEmpty()) {
-      this.gMap.googleMap.setCenter(this.defaultCenter);
-      this.gMap.googleMap.setZoom(this.defaultZoom);
-      return;
-    }
-    const center = this.bounds.getCenter();
-    const offset = 0.02;
-    const northEast = new google.maps.LatLng(
-        center.lat() + offset,
-        center.lng() + offset
-    );
-    const southWest = new google.maps.LatLng(
-        center.lat() - offset,
-        center.lng() - offset
-    );
-    const minBounds = new google.maps.LatLngBounds(southWest, northEast);
-    this.gMap.fitBounds(this.bounds.union(minBounds));
+    const n = Number(value);
+    return isNaN(n) ? null : n;
   }
 
   private get publiclyVisibleControl() {

@@ -26,6 +26,10 @@ npm run generate-api      # generates the API client from the Java backend
 npm run dev               # http://localhost:4200
 ```
 
+`src/assets/env.js` is not tracked: copy `src/assets/env.template.js` to it and fill in
+the values (or `envsubst < src/assets/env.template.js > src/assets/env.js`). The app
+reads `window['env']` at startup and fails without it.
+
 `npm run generate-api` needs the backend running, and the dev server needs an
 `environment.dev.ts`. Both are covered in
 [docs/getting-started.md](docs/getting-started.md).

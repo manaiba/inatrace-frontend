@@ -1,6 +1,5 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
-import { GoogleMap } from '@angular/google-maps';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { CountryService } from 'src/app/shared-services/countries.service';
@@ -23,20 +22,6 @@ export class LocationFormComponent implements OnInit, OnDestroy {
   @Input()
   submitted = false;
 
-  @ViewChild(GoogleMap) set map(map: GoogleMap) {
-    if (map) { this.gMap = map; this.fitBounds(); }
-  }
-
-  gMap = null;
-  isGoogleMapsLoaded = false;
-  markers: any = [];
-  defaultCenter = {
-    lat: 5.274054,
-    lng: 21.514503
-  };
-  defaultZoom = 3;
-  bounds: any;
-  initialBounds: any = [];
   subs: Subscription[] = [];
 
   constructor(
@@ -46,17 +31,9 @@ export class LocationFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.subs.push(
-        this.globalEventsManager.loadedGoogleMapsEmitter.subscribe(
-            loaded => {
-              if (loaded) { this.isGoogleMapsLoaded = true; }
-              this.initializeMarker();
-              const tmpVis = this.form.get('publiclyVisible').value;
-              if (tmpVis != null) { this.form.get('publiclyVisible').setValue(tmpVis.toString()); }
-            },
-            () => { }
-        )
-    );
+    // The single-choice control works with 'true' / 'false' strings
+    const tmpVis = this.form.get('publiclyVisible').value;
+    if (tmpVis != null) { this.form.get('publiclyVisible').setValue(tmpVis.toString()); }
 
     this.subs.push(
         this.form.get('address.country').valueChanges
@@ -182,95 +159,6 @@ export class LocationFormComponent implements OnInit, OnDestroy {
     this.form.get('address.city').updateValueAndValidity();
     this.form.get('address.state').updateValueAndValidity();
     this.form.get('address.zip').updateValueAndValidity();
-  }
-
-  initializeMarker() {
-    if (!this.form.get('latitude') || !this.form.get('longitude')) { return; }
-    const lat = this.form.get('latitude').value;
-    const lng = this.form.get('longitude').value;
-    if (lng == null || lat == null) { return; }
-
-    const tmp = {
-      position: {
-        lat,
-        lng
-      }
-    };
-    this.marker = tmp;
-    this.initialBounds.push(tmp.position);
-  }
-
-  fitBounds() {
-    this.bounds = new google.maps.LatLngBounds();
-    for (const bound of this.initialBounds) {
-      this.bounds.extend(bound);
-    }
-    if (this.bounds.isEmpty()) {
-      this.gMap.googleMap.setCenter(this.defaultCenter);
-      this.gMap.googleMap.setZoom(this.defaultZoom);
-      return;
-    }
-    const center = this.bounds.getCenter();
-    const offset = 0.02;
-    const northEast = new google.maps.LatLng(
-      center.lat() + offset,
-      center.lng() + offset
-    );
-    const southWest = new google.maps.LatLng(
-      center.lat() - offset,
-      center.lng() - offset
-    );
-    const minBounds = new google.maps.LatLngBounds(southWest, northEast);
-    this.gMap.fitBounds(this.bounds.union(minBounds));
-  }
-
-  marker = null;
-
-  updateLonLat() {
-
-    if (this.marker) {
-      this.form.get('latitude').setValue(this.marker.position.lat);
-      this.form.get('longitude').setValue(this.marker.position.lng);
-    } else {
-      this.form.get('latitude').setValue(null);
-      this.form.get('longitude').setValue(null);
-    }
-    this.form.get('latitude').markAsDirty();
-    this.form.get('longitude').markAsDirty();
-  }
-
-  dblClick(event: google.maps.MouseEvent) {
-    if (this.marker) {
-      this.updateMarkerLocation(event.latLng.toJSON());
-    } else {
-      this.marker = {
-        position: event.latLng.toJSON(),
-        label: {
-          text: ' '
-        },
-        infoText: ' '
-      };
-      this.updateLonLat();
-    }
-  }
-
-  dragend(event, index) {
-    this.updateMarkerLocation(event.latLng.toJSON());
-  }
-
-  updateMarkerLocation(loc) {
-    const tmpCurrent = this.marker;
-    this.marker = {
-      position: loc,
-      label: tmpCurrent.label,
-      infoText: tmpCurrent.infoText
-    };
-    this.updateLonLat();
-  }
-
-  removeOriginLocation() {
-    this.marker = null;
-    this.initialBounds = [];
   }
 
   get publiclyVisible() {

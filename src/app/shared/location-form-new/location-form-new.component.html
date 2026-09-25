@@ -126,26 +126,36 @@
             <span i18n="@@locationForm.mapPin.label">Map pin</span><span *ngIf="isMapPinRequired" aria-hidden="true">*</span>
         </div>
 
-        <google-map
-                *ngIf="isGoogleMapsLoaded"
+        <app-mapbox-pins
                 height="250px"
-                width="100%"
-                [options]="{disableDoubleClickZoom: true}"
+                addOn="dblclick"
+                [draggable]="true"
+                [markers]="markers"
                 [class.location-map--invalid]="submitted && hasInvalidMapPin"
-                (mapDblclick)="dblClick($event)">
-            <map-marker
-                #gMarker="mapMarker"
-                *ngIf="marker"
-                [position]="marker.position"
-                [label]="marker.label"
-                [options]="{draggable:true}"
-                (mapRightclick)="removeMarker()"
-                (mapDragend)="dragEnd($event)">
-            </map-marker>
-        </google-map>
+                (mapAdd)="placeMarker($event)"
+                (markerDragEnd)="placeMarker($event.position)"
+                (markerRemove)="removeMarker()">
+        </app-mapbox-pins>
         <small i18n="@@locationForm.origin.helpText" style="margin-top: 0.5rem;">
             Double click on the map to drop a pin and mark the locations. Right click on marker to remove it.
         </small>
+
+        <div class="d-flex" style="gap: 1rem; margin-top: 0.5rem;">
+            <textinput
+                    [form]="form.get('facilityLocation.latitude')"
+                    type="number"
+                    label="Latitude"
+                    style="width: 100%"
+                    i18n-label="@@locationForm.textinput.latitude.label">
+            </textinput>
+            <textinput
+                    [form]="form.get('facilityLocation.longitude')"
+                    type="number"
+                    label="Longitude"
+                    style="width: 100%"
+                    i18n-label="@@locationForm.textinput.longitude.label">
+            </textinput>
+        </div>
         <div *ngIf="submitted && hasInvalidMapPin" class="sc-invalid-feedback" i18n="@@locationForm.mapPin.error">
             A map pin is required when the location is publicly visible.
         </div>

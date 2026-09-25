@@ -1,6 +1,6 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
-import { GoogleMap } from '@angular/google-maps';
+import { MapPin, MapPoint } from '../mapbox-pins/mapbox-pins.component';
 import { Subscription } from 'rxjs';
 import _ from 'lodash-es';
 import { CountryService } from '../../shared-services/countries.service';
@@ -20,24 +20,10 @@ export class GeoaddressFormComponent implements OnInit, OnDestroy {
   @Input()
   submitted = false;
 
-  @ViewChild(GoogleMap) set map(map: GoogleMap) {
-    if (map) { this.gMap = map; this.fitBounds(); }
-  }
-
-  gMap = null;
-  isGoogleMapsLoaded = false;
-  markers: any = [];
-  defaultCenter = {
-    lat: 5.274054,
-    lng: 21.514503
-  };
-  defaultZoom = 3;
-  zoomForOnePin = 10;
-  bounds: any;
-  initialBounds: any = [];
+  // Pin shown on the map; lat/lng live in the form, this only mirrors them
+  markers: Array<MapPin> = [];
   subs: Subscription[] = [];
 
-  marker = null;
   codebookStatus = EnumSifrant.fromObject(this.publiclyVisible);
 
   constructor(
@@ -52,14 +38,7 @@ export class GeoaddressFormComponent implements OnInit, OnDestroy {
       this.form.get('sector').setValidators([Validators.required]);
     });
 
-    const sub2 = this.globalEventsManager.loadedGoogleMapsEmitter.subscribe(
-        loaded => {
-          if (loaded) { this.isGoogleMapsLoaded = true; }
-          this.initializeMarker();
-        },
-        error => { }
-    );
-    this.subs.push(sub2);
+    this.initializeMarker();
 
     const sub3 = this.form.get('country').valueChanges
         .subscribe(value => {
@@ -193,95 +172,20 @@ export class GeoaddressFormComponent implements OnInit, OnDestroy {
     if (!this.form.get('latitude') || !this.form.get('longitude')) { return; }
     const lat = this.form.get('latitude').value;
     const lng = this.form.get('longitude').value;
-    if (lng == null || lat == null) { return; }
-
-    const tmp = {
-      position: {
-        lat,
-        lng
-      }
-    };
-    this.marker = tmp;
-    this.initialBounds.push(tmp.position);
+    this.markers = (lng == null || lat == null) ? [] : [{ position: { lat, lng } }];
   }
 
-  fitBounds() {
-    this.bounds = new google.maps.LatLngBounds();
-    for (const bound of this.initialBounds) {
-      this.bounds.extend(bound);
-    }
-    if (this.bounds.isEmpty()) {
-      this.gMap.googleMap.setCenter(this.defaultCenter);
-      this.gMap.googleMap.setZoom(this.defaultZoom);
-      return;
-    }
-    const center = this.bounds.getCenter();
-    const offset = 0.02;
-    const northEast = new google.maps.LatLng(
-        center.lat() + offset,
-        center.lng() + offset
-    );
-    const southWest = new google.maps.LatLng(
-        center.lat() - offset,
-        center.lng() - offset
-    );
-    const minBounds = new google.maps.LatLngBounds(southWest, northEast);
-    this.gMap.fitBounds(this.bounds.union(minBounds));
-  }
-
-
-
-
-  updateLonLat() {
-
-    if (this.marker) {
-      this.form.get('latitude').setValue(this.marker.position.lat);
-      this.form.get('longitude').setValue(this.marker.position.lng);
-    } else {
-      this.form.get('latitude').setValue(null);
-      this.form.get('longitude').setValue(null);
-    }
+  setLonLat(position: MapPoint) {
+    this.markers = position ? [{ position }] : [];
+    this.form.get('latitude').setValue(position ? position.lat : null);
+    this.form.get('longitude').setValue(position ? position.lng : null);
     this.form.get('latitude').markAsDirty();
     this.form.get('longitude').markAsDirty();
   }
 
-  dblClick(event: google.maps.MouseEvent) {
-    if (this.marker) {
-      this.updateMarkerLocation(event.latLng.toJSON());
-    } else {
-      const tmp = {
-        position: event.latLng.toJSON(),
-        label: {
-          text: ' '
-        },
-        infoText: ' '
-      };
-      this.marker = tmp;
-      this.updateLonLat();
-    }
-  }
-
-  dragend(event, index) {
-    this.updateMarkerLocation(event.latLng.toJSON());
-  }
-
-  updateMarkerLocation(loc) {
-    const tmpCurrent = this.marker;
-    const tmp = {
-      position: loc,
-      label: tmpCurrent.label,
-      infoText: tmpCurrent.infoText
-    };
-    this.marker = tmp;
-    this.updateLonLat();
-  }
-
-
   removeOriginLocation() {
-    this.marker = null;
-    this.initialBounds = [];
+    this.setLonLat(null);
   }
-
 
   get publiclyVisible() {
     const obj = {};

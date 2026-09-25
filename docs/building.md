@@ -45,8 +45,7 @@ docker run -p 8080:8080 \
 | `QR_CODE_BASE_PATH` | Path of QR code links, usually `q-cd` |
 | `RELATIVE_FILE_UPLOAD_URL`, `RELATIVE_FILE_UPLOAD_URL_MANUAL_TYPE` | Backend document upload path, usually `/api/common/document` |
 | `RELATIVE_IMAGE_UPLOAD_URL`, `RELATIVE_IMAGE_UPLOAD_URL_ALL_SIZES` | Backend image upload path, usually `/api/common/image` |
-| `GOOGLE_MAPS_API_KEY` | Google Maps API key |
-| `MAPBOX_ACCESS_TOKEN` | Mapbox token; the plot map does not draw without it |
+| `MAPBOX_ACCESS_TOKEN` | Mapbox public token; no map in the application draws without it |
 | `TOKEN_FOR_PUBLIC_LOG_ROUTE` | Token for the public request log route, matching the backend's `INATrace.requestLog.token` |
 | `BEYCO_AUTH_URL`, `BEYCO_CLIENT_ID` | Beyco integration, optional |
 

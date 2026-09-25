@@ -2,7 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Location } from '@angular/common';
 import { AfterViewInit, Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
-import { GoogleMap, MapInfoWindow } from '@angular/google-maps';
+import { MapboxPinsComponent, MapPoint } from '../../shared/mapbox-pins/mapbox-pins.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faCompass, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faArrowDown, faArrowsAlt, faArrowUp, faCodeBranch, faEye, faQrcode, faSlidersH, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -84,16 +84,7 @@ import { SelfOnboardingService } from "../../shared-services/self-onboarding.ser
 })
 export class ProductLabelComponent extends ComponentCanDeactivate implements OnInit, OnDestroy, AfterViewInit {
 
-  @ViewChild(GoogleMap) set map(gMap: GoogleMap) {
-    if (gMap) {
-      this.gMap = gMap;
-      this.googleMapsIsLoaded();
-    }
-  }
-
-  @ViewChild(MapInfoWindow) set infoWindow(infoWindow: MapInfoWindow) {
-    if (infoWindow) { this.gInfoWindow = infoWindow; }
-  }
+  @ViewChild(MapboxPinsComponent) pinsMap: MapboxPinsComponent;
 
   @ViewChild('createProductTooltip')
   createProductTooltip: NgbTooltip;
@@ -113,10 +104,6 @@ export class ProductLabelComponent extends ComponentCanDeactivate implements OnI
   // origin location helper methods
   get originLocations(): FormArray {
     return this.productForm.get('origin.locations') as FormArray;
-  }
-
-  get isGoogleMapsLoaded() {  // fix of a Google Maps glitch
-    return !!window.google;
   }
 
   get labelChanged() {
@@ -170,19 +157,10 @@ export class ProductLabelComponent extends ComponentCanDeactivate implements OnI
     return obj;
   }
 
-  gMap = null;
-  gInfoWindow = null;
-  gInfoWindowText = '';
   productForm: FormGroup;
   countries: any = [];
   markers: any = [];
   journeyMarkers: any[] = [];
-  defaultCenter = {
-    lat: 5.274054,
-    lng: 21.514503
-  };
-  defaultZoom = 3;
-  bounds: any;
   initialBounds: any = [];
 
   faTimes = faTimes;
@@ -963,21 +941,16 @@ export class ProductLabelComponent extends ComponentCanDeactivate implements OnI
     this.markers.splice(index, 1, tmp);
   }
 
-  dblClick(event: google.maps.MouseEvent) {
+  addPin(position: MapPoint) {
     if (this.canEdit()) {
-      this.addOriginLocations(event.latLng.toJSON());
+      this.addOriginLocations(position);
     }
   }
 
-  dragend(event, index) {
-    this.updateMarkerLocation(event.latLng.toJSON(), index);
+  dragend(event: { index: number, position: MapPoint }) {
+    this.updateMarkerLocation(event.position, event.index);
   }
 
-  openInfoWindow(gMarker, marker) {
-    this.gInfoWindowText = marker.infoText;
-    this.gInfoWindow.open(gMarker);
-  }
-  
   removeJourneyMarker(i: number) {
     this.journeyMarkersCtrl.removeAt(i);
     this.journeyMarkersCtrl.markAsDirty();
@@ -1013,37 +986,12 @@ export class ProductLabelComponent extends ComponentCanDeactivate implements OnI
     this.updateInfoWindow(event.target.value, index);
   }
 
-  googleMapsIsLoaded() {
-    if (this.initialBounds.length === 0) { return; }
-    this.bounds = new google.maps.LatLngBounds();
-    for (const bound of this.initialBounds) {
-      this.bounds.extend(bound);
-    }
-    if (this.bounds.isEmpty()) {
-      this.gMap.googleMap.setCenter(this.defaultCenter);
-      this.gMap.googleMap.setZoom(this.defaultZoom);
-      return;
-    }
-    const center = this.bounds.getCenter();
-    const offset = 0.02;
-    const northEast = new google.maps.LatLng(
-      center.lat() + offset,
-      center.lng() + offset
-    );
-    const southWest = new google.maps.LatLng(
-      center.lat() - offset,
-      center.lng() - offset
-    );
-    const minBounds = new google.maps.LatLngBounds(southWest, northEast);
-    this.gMap.fitBounds(this.bounds.union(minBounds));
-  }
-
   resetMap() {
     this.initialBounds = [];
     for (const m of this.markers) {
       this.initialBounds.push(m.position);
     }
-    this.googleMapsIsLoaded();
+    this.pinsMap?.fitBounds(this.initialBounds);
   }
 
   openOnStart() {

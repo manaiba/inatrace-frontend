@@ -14,7 +14,6 @@ import { ApiCompanyBase } from '../../../../api/model/apiCompanyBase';
 import { EnumSifrant } from '../../../shared-services/enum-sifrant';
 import { ApiSemiProduct } from '../../../../api/model/apiSemiProduct';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-// import { Subject } from 'rxjs/internal/Subject';
 import { ApiFacilityTranslation } from '../../../../api/model/apiFacilityTranslation';
 import { FinalProductsForCompanyService } from '../../../shared-services/final-products-for-company.service';
 import { FinalProductControllerService } from '../../../../api/api/finalProductController.service';
@@ -173,6 +172,12 @@ export class CompanyDetailFacilityAddComponent implements OnInit, OnDestroy {
   save() {
     this.submitted = true;
     if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      this.globalEventsManager.push({
+        notificationType: 'error',
+        title: $localize`:@@facilityAdd.save.invalid.title:Facility not saved`,
+        message: $localize`:@@facilityAdd.save.invalid.message:Some required fields are missing or invalid. Please check the highlighted fields.`
+      });
       return;
     }
     const facility: ApiFacility = this.form.value;

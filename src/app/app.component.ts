@@ -18,21 +18,7 @@ export class AppComponent implements OnInit {
     ){}
 
   ngOnInit() {
-    this.loadGoogleMaps();
     this.cookieManagementService.loadConsentedCookies();
-  }
-
-  loadGoogleMaps(): void {
-    window['initMap'] = () => {
-      this.globalEventsManager.loadedGoogleMaps(true);
-    };
-    const gmScript = document.createElement('script');
-    gmScript.src = `https://maps.googleapis.com/maps/api/js?key=${environment.googleMapsApiKey}&callback=initMap`;
-    gmScript.defer = true;
-    gmScript.async = true;
-
-    document.head.appendChild(gmScript);
-
   }
 
   hasDefinedConsentToAllCookies() {

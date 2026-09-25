@@ -1,0 +1,6 @@
+<div class="mapbox-pins" [style.height]="height">
+  <div #mapContainer class="mapbox-pins-canvas"></div>
+  <div *ngIf="tokenMissing" class="mapbox-pins-unavailable" i18n="@@mapboxPins.tokenMissing">
+    Map unavailable: no Mapbox access token is configured.
+  </div>
+</div>

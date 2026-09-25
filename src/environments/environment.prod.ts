@@ -6,9 +6,9 @@ import { VERSION } from './version';
 
 export const environment = {
     production: true,
-    environmentName: window['env']['environmentName'] || '',
-    basePath: 'https://cocoageotrack.cm',
-    appBaseUrl: 'https://cocoageotrack.cm',
+    environmentName: window['env']['environmentName'] || 'PROD',
+    basePath: window['env']['basePath'] || '',
+    appBaseUrl: window['env']['appBaseUrl'] || '',
     qrCodeBasePath: window['env']['qrCodeBasePath'] || '',
     chainRelativeFileUploadUrl: '/api/common/document',
     chainRelativeFileDownloadUrl: '/api/common/document',
@@ -18,7 +18,6 @@ export const environment = {
     relativeImageUploadUrlAllSizes: window['env']['relativeImageUploadUrlAllSizes'] || '/api/common/image',
     version: VERSION,
 
-    googleMapsApiKey: window['env']['googleMapsApiKey'] || '',
     googleAnalyticsId: '',
     mapboxAccessToken: window['env']['mapboxAccessToken'] || '',
     facebookPixelId: null,
