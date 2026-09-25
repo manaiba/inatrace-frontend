@@ -62,7 +62,7 @@
               <ng-container *ngIf="submitted && translation.value.language === languageEnum.EN && !this.form.get('translations.' + i + '.name').value">
                 <div *ngIf="this.form.get('translations').errors as errors" class="sc-invalid-feedback">
                   <div *ngIf="errors.required"
-                       i18n-label="@@semiProductDetail.textinput.name.error">
+                       i18n="@@semiProductDetail.textinput.name.error">
                         <span>
                           Name is required
                         </span>
@@ -84,7 +84,7 @@
               <ng-container *ngIf="submitted && translation.value.language === languageEnum.EN && !this.form.get('translations.' + i + '.description').value">
                 <div *ngIf="this.form.get('translations').errors as errors" class="sc-invalid-feedback">
                   <div *ngIf="errors.required"
-                       i18n-label="@@semiProductDetail.textinput.description.error">
+                       i18n="@@semiProductDetail.textinput.description.error">
                                           <span>
                                             Description is required
                                           </span>

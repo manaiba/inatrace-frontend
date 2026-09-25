@@ -8,5 +8,5 @@
     <p >{{errorMessage || "Write error message here ..."}}</p>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="activeModal.close('Close click'); closeCallback && closeCallback()">Close</button>
+    <button type="button" class="btn btn-light" (click)="activeModal.close('Close click'); closeCallback && closeCallback()" i18n="@@common.button.close">Close</button>
 </div>

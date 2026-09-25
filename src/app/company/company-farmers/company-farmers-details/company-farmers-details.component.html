@@ -252,7 +252,7 @@
                             <list-editor-errors>
                                 <ng-container *ngIf="submitted">
                                     <div *ngIf="farmerForm.get('cooperatives').errors as errors" class="sc-invalid-feedback">
-                                        <div *ngIf="errors.required" i18n-title="@@collectorDetail.list-editor.cooperatives.error">
+                                        <div *ngIf="errors.required" i18n="@@collectorDetail.list-editor.cooperatives.error">
                                             <span>
                                                 Cooperative is required
                                             </span>
@@ -396,7 +396,7 @@
                             <list-editor-errors>
                                 <ng-container *ngIf="submitted">
                                     <div *ngIf="farmerForm.get('certifications').errors as errors" class="sc-invalid-feedback">
-                                        <div *ngIf="errors.required" i18n-title="@@companyDetail.list-editor.certificationsAndStandards.error">
+                                        <div *ngIf="errors.required" i18n="@@companyDetail.list-editor.certificationsAndStandards.error">
                                             <span>Certifications are required</span>
                                         </div>
                                     </div>
@@ -414,7 +414,7 @@
                               (onChange)="addSelectedProductType($event)">
                                 <ng-container *ngIf="submitted">
                                     <div *ngIf="farmerForm.get('productTypes').errors as errors" class="sc-invalid-feedback">
-                                        <div *ngIf="errors.required" i18n-title="@@collectorDetail.list-editor.productTypes.error">
+                                        <div *ngIf="errors.required" i18n="@@collectorDetail.list-editor.productTypes.error">
                                             <span>Product types are required</span>
                                         </div>
                                     </div>

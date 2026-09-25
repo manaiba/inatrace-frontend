@@ -140,9 +140,9 @@
                 <list-editor-errors>
                   <ng-container *ngIf="submitted">
                     <div *ngIf="form.get('items').errors as errors" class="sc-invalid-feedback">
-                      <div *ngIf="errors.minLengthArray" i18n-title="@@globalOrderEdit.list-editor.stockOrders.error.oneItemRequired">
+                      <div *ngIf="errors.minLengthArray" i18n="@@globalOrderEdit.list-editor.stockOrders.error.oneItemRequired">
                           <span>
-                            At least on item is required.
+                            At least one item is required.
                           </span>
                       </div>
                     </div>

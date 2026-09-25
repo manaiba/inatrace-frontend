@@ -77,7 +77,7 @@
                             [isInvalidChoice]="submitted && form.get('crop').invalid">
                         <ng-container *ngIf="submitted">
                             <div *ngIf="form.get('crop').errors as errors" class="sc-invalid-feedback">
-                                <div *ngIf="errors.required" i18n-title="@@collectorDetail.list-editor.productTypes.error">
+                                <div *ngIf="errors.required" i18n="@@collectorDetail.list-editor.productTypes.error">
                                     <span>Product types are required</span>
                                 </div>
                             </div>

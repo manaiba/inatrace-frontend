@@ -469,7 +469,7 @@
       comment="Please upload a high-quality photo of your product – make sure the photo is of marketing quality. (72dpi and 1200x2000px recommended)"
       i18n-comment="@@productLabel.attachment-uploader.productPhoto.comment"
       [invalid]="submitted && productForm.get('photo').invalid">
-      <attachment-uploader-content i18n-label="@@productLabel.attachment-uploader.productPhoto.content">
+      <attachment-uploader-content i18n="@@productLabel.attachment-uploader.productPhoto.content">
         Upload product photo
       </attachment-uploader-content>
       <attachment-uploader-errors>
@@ -477,7 +477,7 @@
     </attachment-uploader>
     <ng-container *ngIf="submitted">
       <div *ngIf="productForm.get('photo').errors as errors" validation-error class="sc-invalid-feedback">
-        <div *ngIf="errors.required" i18n-label="@@productLabel.attachment-uploader.productPhoto.error">
+        <div *ngIf="errors.required" i18n="@@productLabel.attachment-uploader.productPhoto.error">
           <span>
             Product photo is required
           </span>
@@ -506,7 +506,7 @@
       [isInvalid]="submitted && productForm.get('description').invalid">
       <ng-container *ngIf="submitted">
         <div *ngIf="productForm.get('description').errors as errors" class="sc-invalid-feedback">
-          <div *ngIf="errors.required" i18n-label="@@productLabel.textinput.productDesc.error">
+          <div *ngIf="errors.required" i18n="@@productLabel.textinput.productDesc.error">
             <span>
               Product description is required
             </span>
@@ -621,7 +621,7 @@
       [isInvalid]="submitted && productForm.get('process.production').invalid">
       <ng-container *ngIf="submitted">
         <div *ngIf="productForm.get('process.production').errors as errors" class="sc-invalid-feedback">
-          <div *ngIf="errors.required" i18n-label="@@productLabel.textinput.production.error">
+          <div *ngIf="errors.required" i18n="@@productLabel.textinput.production.error">
             <span>
               Production is required
             </span>
@@ -680,7 +680,7 @@
       [isInvalid]="submitted && productForm.get('sustainability.production').invalid">
       <ng-container *ngIf="submitted">
         <div *ngIf="productForm.get('sustainability.production').errors as errors" class="sc-invalid-feedback">
-          <div *ngIf="errors.required" i18n-label="@@productLabel.textinput.environmentalyFriendlyProduction.error">
+          <div *ngIf="errors.required" i18n="@@productLabel.textinput.environmentalyFriendlyProduction.error">
             <span>
               Production is required
             </span>

@@ -38,7 +38,7 @@
             [readOnly]="readOnly">
             <ng-container *ngIf="submitted">
               <div *ngIf="form.get('name').errors as errors" class="sc-invalid-feedback">
-                <div *ngIf="errors.required" i18n-label="@@compDocItem.textinput.farmerName.error">
+                <div *ngIf="errors.required" i18n="@@compDocItem.textinput.farmerName.error">
                   <span>
                     Farmer name is required
                   </span>
@@ -57,7 +57,7 @@
             [readOnly]="readOnly">
             <ng-container *ngIf="submitted">
               <div *ngIf="form.get('description').errors as errors" class="sc-invalid-feedback">
-                <div *ngIf="errors.required" i18n-label="@@compDocItem.textinput.farmerDescription.error">
+                <div *ngIf="errors.required" i18n="@@compDocItem.textinput.farmerDescription.error">
                   <span>
                     Farmer description is required
                   </span>
@@ -78,7 +78,7 @@
             [readOnly]="readOnly">
             <ng-container *ngIf="submitted">
               <div *ngIf="form.get('description').errors as errors" class="sc-invalid-feedback">
-                <div *ngIf="errors.required" i18n-label="@@compDocItem.textinput.description.error">
+                <div *ngIf="errors.required" i18n="@@compDocItem.textinput.description.error">
                   <span>
                     Description is required
                   </span>
@@ -99,7 +99,7 @@
             [readOnly]="readOnly">
             <ng-container *ngIf="submitted">
               <div *ngIf="form.get('description').errors as errors" class="sc-invalid-feedback">
-                <div *ngIf="errors.required" i18n-label="@@compDocItem.textinput.videoDescription.error">
+                <div *ngIf="errors.required" i18n="@@compDocItem.textinput.videoDescription.error">
                   <span>
                     Video description is required
                   </span>
@@ -179,7 +179,7 @@
             [readOnly]="readOnly">
             <ng-container *ngIf="submitted">
               <div *ngIf="form.get('link').errors as errors" class="sc-invalid-feedback">
-                <div *ngIf="errors.required" i18n-label="@@compDocItem.textinput.link.error">
+                <div *ngIf="errors.required" i18n="@@compDocItem.textinput.link.error">
                   <span>
                     Link is required
                   </span>
@@ -200,7 +200,7 @@
             [readOnly]="readOnly">
             <ng-container *ngIf="submitted">
               <div *ngIf="form.get('quote').errors as errors" class="sc-invalid-feedback">
-                <div *ngIf="errors.required" i18n-label="@@compDocItem.textinput.quote.error">
+                <div *ngIf="errors.required" i18n="@@compDocItem.textinput.quote.error">
                   <span>
                     Quote is required
                   </span>

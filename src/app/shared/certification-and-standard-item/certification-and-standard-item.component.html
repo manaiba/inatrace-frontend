@@ -38,7 +38,7 @@
           [readOnly]="viewOnly">
           <ng-container *ngIf="submitted">
             <div *ngIf="form.get('description').errors as errors" class="sc-invalid-feedback">
-              <div *ngIf="errors.required" i18n-label="@@certAndStdItems.textinput.description.error">
+              <div *ngIf="errors.required" i18n="@@certAndStdItems.textinput.description.error">
                 <span>
                   Description is required
                 </span>

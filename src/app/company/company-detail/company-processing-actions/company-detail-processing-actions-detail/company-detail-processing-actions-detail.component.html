@@ -308,7 +308,7 @@
                                                 [isInvalid]="submitted && form.get('maxOutputWeight').invalid">
                                             <ng-container *ngIf="submitted">
                                                 <div *ngIf="form.get('maxOutputWeight').errors as errors" class="sc-invalid-feedback">
-                                                    <div *ngIf="errors.required" i18n-label="@@companyDetailProcessingActions.field.maxOutputWeight.error">
+                                                    <div *ngIf="errors.required" i18n="@@companyDetailProcessingActions.field.maxOutputWeight.error.required">
                                                         <span>Max output weight is required</span>
                                                     </div>
                                                 </div>
@@ -339,7 +339,7 @@
                                 style="width: 100%">
                             <ng-container *ngIf="submitted">
                                 <div *ngIf="form.get('prefix').errors as errors" class="sc-invalid-feedback">
-                                    <div *ngIf="errors.required" i18n-label="@@companyDetailProcessingActions.textInput.prefix.error">
+                                    <div *ngIf="errors.required" i18n="@@companyDetailProcessingActions.textInput.prefix.error.required">
                                         <span>
                                           Alias for the process is required
                                         </span>
@@ -358,12 +358,12 @@
                             style="width: 100%">
                             <ng-container *ngIf="submitted">
                                 <div *ngIf="form.get('sortOrder').errors as errors" class="sc-invalid-feedback">
-                                    <div *ngIf="errors.required" i18n-label="@@companyDetailProcessingActions.textInput.sortOrder.error.required">
+                                    <div *ngIf="errors.required" i18n="@@companyDetailProcessingActions.textInput.sortOrder.error.required">
                                         <span>
                                             Sort order is required
                                         </span>
                                     </div>
-                                    <div *ngIf="errors.pattern" i18n-label="@@companyDetailProcessingActions.textInput.sortOrder.error.pattern">
+                                    <div *ngIf="errors.pattern" i18n="@@companyDetailProcessingActions.textInput.sortOrder.error.pattern">
                                         <span>
                                             Sort order must be a number
                                         </span>
@@ -517,7 +517,7 @@
                                 style="width: 100%">
                             <ng-container *ngIf="submitted">
                                 <div *ngIf="this.form.get('publicTimelineLabel').errors as errors" class="sc-invalid-feedback">
-                                    <div *ngIf="errors.required" i18n-label="@@companyDetailProcessingActions.textInput.publicTimelineLabel.error">
+                                    <div *ngIf="errors.required" i18n="@@companyDetailProcessingActions.textInput.publicTimelineLabel.error.required">
                                         <span>
                                           Public timeline label
                                         </span>

@@ -30,7 +30,7 @@
                 [readOnly]="readOnly">
           <ng-container *ngIf="submitted">
             <div *ngIf="form.get('description').errors as errors" class="sc-invalid-feedback">
-              <div *ngIf="errors.required" i18n-label="@@productLabelStakeholders.dataSharingAgreements.listEditor.item.description.error">
+              <div *ngIf="errors.required" i18n="@@productLabelStakeholders.dataSharingAgreements.listEditor.item.description.error">
                   <span>
                     Description is required
                   </span>
