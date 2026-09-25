@@ -292,6 +292,9 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       const openInGeoIdLabel = $localize`:@@map.modal.openInWhisp.title:Open in Whisp`;
       const certificationLabel = $localize`:@@map.modal.certification.title:Certification:`;
       let euOrganic = $localize`:@@map.modal.eu.organic.title:EU Organic`;
+      const farmerLabel = $localize`:@@map.modal.farmer.title:Farmer:`;
+      const farmerIdLabel = $localize`:@@map.modal.farmerId.title:Farmer ID:`;
+      const farmerLocalityLabel = $localize`:@@map.modal.farmerLocality.title:Village:`;
       // Plot fields are user input and end up in setHTML below, so escape them
       const name = this.escapeHtml(plot.plotName);
       let crop = this.escapeHtml(plot.crop?.name);
@@ -328,8 +331,31 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       if (!isCertified) {
         euOrganic = '/';
       }
+      // On the company map every plot carries its owner, so users can tell whose plot it is (bug #12).
+      // Surname first, as farmers are identified by family name. Plot fields are user input: escape.
+      let farmerRowsHtml = '';
+      if (plot.farmerName || plot.farmerSurname) {
+        const farmerFullName = this.escapeHtml([plot.farmerSurname, plot.farmerName].filter(Boolean).join(' '));
+        const farmerId = this.escapeHtml(plot.farmerCompanyInternalId || plot.farmerId);
+        farmerRowsHtml = `<div class="marker-popup-row">
+                                    <div class="row-left">${farmerLabel}</div>
+                                    <div class="row-right"><b>${farmerFullName}</b></div>
+                                  </div>
+                                  <div class="marker-popup-row">
+                                    <div class="row-left">${farmerIdLabel}</div>
+                                    <div class="row-right"><b>${farmerId}</b></div>
+                                  </div>`;
+        if (plot.farmerLocality) {
+          farmerRowsHtml += `<div class="marker-popup-row">
+                                    <div class="row-left">${farmerLocalityLabel}</div>
+                                    <div class="row-right"><b>${this.escapeHtml(plot.farmerLocality)}</b></div>
+                                  </div>`;
+        }
+      }
+
       const popupHtml = `<div class="marker-popup">
                                   <div class="marker-popup-row-header">${name}</div>
+                                  ${farmerRowsHtml}
                                   <div class="marker-popup-row">
                                     <div class="row-left">${cropLabel}</div>
                                     <div class="row-right"><b>${crop}</b></div>

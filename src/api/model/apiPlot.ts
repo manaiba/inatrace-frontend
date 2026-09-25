@@ -65,9 +65,16 @@ export interface ApiPlot {
      */
     lastUpdated?: Date;
     /**
-     * Date of last update
+     * ID of the farmer owning the plot
      */
     farmerId?: number;
+    /**
+     * Owning farmer's first name, last name, company-internal ID and village/city (company plots list only)
+     */
+    farmerName?: string;
+    farmerSurname?: string;
+    farmerCompanyInternalId?: string;
+    farmerLocality?: string;
 
     /**
      * Center plot coordinate
@@ -126,6 +133,10 @@ export namespace ApiPlot {
          * Date of last update
          */
         farmerId = 'farmerId',
+        farmerName = 'farmerName',
+        farmerSurname = 'farmerSurname',
+        farmerCompanyInternalId = 'farmerCompanyInternalId',
+        farmerLocality = 'farmerLocality',
         centerLatitude = 'centerLatitude',
         centerLongitude = 'centerLongitude'
     }
@@ -263,6 +274,50 @@ export namespace ApiPlot {
                     isReadOnly: false,
                     isEnum: false,
                     required: false,
+                    name: 'farmerName',
+                    classname: 'ApiPlot',
+                    dataType: 'string',
+                    isPrimitiveType: true,
+                    isListContainer: false,
+                    complexType: ''
+                },
+                {
+                    isReadOnly: false,
+                    isEnum: false,
+                    required: false,
+                    name: 'farmerSurname',
+                    classname: 'ApiPlot',
+                    dataType: 'string',
+                    isPrimitiveType: true,
+                    isListContainer: false,
+                    complexType: ''
+                },
+                {
+                    isReadOnly: false,
+                    isEnum: false,
+                    required: false,
+                    name: 'farmerCompanyInternalId',
+                    classname: 'ApiPlot',
+                    dataType: 'string',
+                    isPrimitiveType: true,
+                    isListContainer: false,
+                    complexType: ''
+                },
+                {
+                    isReadOnly: false,
+                    isEnum: false,
+                    required: false,
+                    name: 'farmerLocality',
+                    classname: 'ApiPlot',
+                    dataType: 'string',
+                    isPrimitiveType: true,
+                    isListContainer: false,
+                    complexType: ''
+                },
+                {
+                    isReadOnly: false,
+                    isEnum: false,
+                    required: false,
                     name: 'centerLongitude',
                     classname: 'ApiPlot',
                     dataType: 'number',
@@ -304,6 +359,14 @@ export namespace ApiPlot {
                 lastUpdated: [
                 ],
                 farmerId: [
+                ],
+                farmerName: [
+                ],
+                farmerSurname: [
+                ],
+                farmerCompanyInternalId: [
+                ],
+                farmerLocality: [
                 ],
                 centerLatitude: [
                 ],
