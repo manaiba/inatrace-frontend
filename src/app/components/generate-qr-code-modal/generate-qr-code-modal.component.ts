@@ -53,7 +53,10 @@ export class GenerateQRCodeModalComponent implements OnInit, OnDestroy {
     // When the selected Final product label changes, update the QR code string
     this.finalProdLabelSubs = this.finalProductLabelForm.valueChanges.subscribe((label: ApiProductLabelBase) => {
       if (label && this.qrCodeTag) {
-        this.qrCodeString = `${environment.appBaseUrl}/${label.language.toLowerCase()}/${environment.qrCodeBasePath}/${label.uuid}/${this.qrCodeTag}`;
+        // Codes with a QR tag resolve through the /q-cd/:uuid/:qrTag route; see label-selector-card for
+        // why the deployment settings need a fallback
+        const baseUrl = environment.appBaseUrl || window.location.origin;
+        this.qrCodeString = `${baseUrl}/${label.language.toLowerCase()}/q-cd/${label.uuid}/${this.qrCodeTag}`;
       } else {
         this.qrCodeString = null;
       }

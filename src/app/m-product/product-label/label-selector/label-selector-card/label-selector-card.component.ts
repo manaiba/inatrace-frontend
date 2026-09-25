@@ -57,7 +57,11 @@ export class LabelSelectorCardComponent implements OnInit {
     if (this.label) {
       const res = await this.productController.getProductLabelContent(this.label.id).pipe(take(1)).toPromise();
       if (res && res.status === 'OK' && res.data) {
-        this.qrCodeLink = `${environment.appBaseUrl}/${res.data.settings.language.toLowerCase()}/${environment.qrCodeBasePath}/${this.label.uuid}`;
+        // appBaseUrl / qrCodeBasePath are optional deployment settings; without them the code used to
+        // encode "/en//<uuid>", which a phone cannot open. Fall back to this site and the /q route.
+        const baseUrl = environment.appBaseUrl || window.location.origin;
+        const qrPath = environment.qrCodeBasePath || 'q';
+        this.qrCodeLink = `${baseUrl}/${res.data.settings.language.toLowerCase()}/${qrPath}/${this.label.uuid}`;
       }
     }
   }
