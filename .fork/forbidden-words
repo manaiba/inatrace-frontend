@@ -1,0 +1,12 @@
+# Case-insensitive regex alternatives, one per line. Lines added by an
+# upstream-bound branch must not match any of them.
+prosygma
+cameroon
+cameroun
+inatrace\.cm
+hilltop
+bongabee
+procaba
+proccalem
+neoindustry
+uccao

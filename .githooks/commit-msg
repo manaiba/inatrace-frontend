@@ -1,0 +1,7 @@
+#!/bin/sh
+# Refuse AI attribution lines in commit messages (see FORK.md, "Commits").
+if grep -qiE '^[[:space:]]*co-authored-by:.*(claude|anthropic)|generated with .*claude' "$1"; then
+  echo "commit-msg: remove the Claude attribution line from the message." >&2
+  exit 1
+fi
+exit 0

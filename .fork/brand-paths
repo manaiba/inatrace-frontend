@@ -1,0 +1,7 @@
+# Paths owned by the Cameroon fork (bash glob patterns). An upstream-bound
+# branch that touches them gets a warning.
+FORK.md
+.fork/*
+scripts/fork-setup.sh
+scripts/check-upstream-clean.sh
+.githooks/commit-msg
