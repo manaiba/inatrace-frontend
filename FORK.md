@@ -14,8 +14,8 @@ Two goals drive how it is organised:
 
 | Branch | Content | Rule |
 |---|---|---|
-| `main` | exact copy of `upstream/main` | only `git merge --ff-only upstream/main`, never commit here |
-| `cameroon` | `main` + Cameroon features and fixes | default branch, the only one deployed; receives `main` by **merge** |
+| `main` | exact copy of `upstream/main` | only `git merge --ff-only upstream/main`, never commit here; GitHub default branch |
+| `cameroon` | `main` + Cameroon features and fixes | the only branch deployed; receives `main` by **merge** |
 | `feat/*`, `fix/*` | generic work, candidate for agstack | branch from **`main`**, PR to agstack, then merge into `cameroon` |
 | `cm/*` | Cameroon-only work | branch from **`cameroon`**, PR to `prosygma/inatrace-frontend:cameroon` |
 | `archive/*` | history before this model (2026-10-01) | read-only |
