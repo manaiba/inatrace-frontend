@@ -11,11 +11,14 @@
     "test:ci": "ng test --watch=false --browsers=ChromeHeadlessCI",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "generate-api": "node generate-api.js",
+    "generate-api": "node generate-api.js --update",
     "generate-chain-api": "node generate-chain-api.js",
     "extract-i18n-generate-translations": "node generate-translations.js",
     "dev": "ng serve --configuration=dev --aot --host 0.0.0.0 --proxy-config proxy.INATrace-local.conf.json",
-    "dev-poll": "ng serve --configuration=dev --aot --host 0.0.0.0 --proxy-config proxy.INATrace-local.conf.json --poll 2000"
+    "dev-poll": "ng serve --configuration=dev --aot --host 0.0.0.0 --proxy-config proxy.INATrace-local.conf.json --poll 2000",
+    "check:api": "node generate-api.js --check",
+    "test:api-generator": "node scripts/test-api-generation.js",
+    "audit:api-models": "node generate-api.js --audit"
   },
   "private": true,
   "dependencies": {

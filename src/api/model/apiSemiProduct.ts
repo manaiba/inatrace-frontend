@@ -23,7 +23,7 @@ import { ApiSemiProductTranslation } from './apiSemiProductTranslation';
 
 
 /**
- * list of supported semi-products
+ * List of supported semi-products. Omit on update to preserve associations; send an empty list to clear them.
  */
 
 export interface ApiSemiProduct { 

@@ -80,15 +80,15 @@ export interface ApiFacility {
     company?: ApiCompanyBase;
     facilityType?: ApiFacilityType;
     /**
-     * List of semi product ID's for this facility
+     * List of semi product IDs for this facility. Omit on update to preserve associations; send an empty list to clear them.
      */
     facilitySemiProductList?: Array<ApiSemiProduct>;
     /**
-     * List of final product ID's for this facility
+     * List of final product IDs for this facility. Omit on update to preserve associations; send an empty list to clear them.
      */
     facilityFinalProducts?: Array<ApiFinalProduct>;
     /**
-     * List of value chains for this facility
+     * List of value chains for this facility. Omit on update to preserve associations; send an empty list to clear them.
      */
     facilityValueChains?: Array<ApiValueChain>;
     /**
@@ -154,15 +154,15 @@ export namespace ApiFacility {
         company = 'company',
         facilityType = 'facilityType',
         /**
-         * List of semi product ID's for this facility
+         * List of semi product IDs for this facility. Omit on update to preserve associations; send an empty list to clear them.
          */
         facilitySemiProductList = 'facilitySemiProductList',
         /**
-         * List of final product ID's for this facility
+         * List of final product IDs for this facility. Omit on update to preserve associations; send an empty list to clear them.
          */
         facilityFinalProducts = 'facilityFinalProducts',
         /**
-         * List of value chains for this facility
+         * List of value chains for this facility. Omit on update to preserve associations; send an empty list to clear them.
          */
         facilityValueChains = 'facilityValueChains',
         /**

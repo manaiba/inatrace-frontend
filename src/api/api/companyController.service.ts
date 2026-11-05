@@ -51,7 +51,7 @@ import { ApiResponseListApiCompanyUser } from '../model/apiResponseListApiCompan
 import { ApiResponseListApiPlot } from '../model/apiResponseListApiPlot';
 import { ApiUserCustomer } from '../model/apiUserCustomer';
 import { ApiUserCustomerImportResponse } from '../model/apiUserCustomerImportResponse';
-import { InlineObject } from '../model/inlineObject';
+import { InlineObject2 } from '../model/inlineObject2';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -1609,7 +1609,7 @@ export namespace UploadUserCustomerGeoData {
        * User customer ID
        */
       id: number;
-      InlineObject?: InlineObject;
+      InlineObject2?: InlineObject2;
     }
 
     /**
@@ -1620,7 +1620,7 @@ export namespace UploadUserCustomerGeoData {
        * User customer ID
        */
       id = 'id',
-      InlineObject = 'InlineObject'
+      InlineObject2 = 'InlineObject2'
     }
 
     /**
@@ -3759,7 +3759,7 @@ export class CompanyControllerService {
 
 
   /**
-   * Upload .xls or .xlsx spreadsheet of farmers to import into DB by map.
+   * Import farmers from an XLSX spreadsheet document by map.
    * 
    * @param map parameters map to set partial amount of parameters easily
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -3792,7 +3792,7 @@ export class CompanyControllerService {
 
 
     /**
-     * Upload .xls or .xlsx spreadsheet of farmers to import into DB
+     * Import farmers from an XLSX spreadsheet document
      * 
      * @param companyId Company ID
      * @param documentId Document ID
@@ -4478,7 +4478,7 @@ export class CompanyControllerService {
     reportProgress: boolean = false): Observable<any> {
     return this.uploadUserCustomerGeoData(
       map.id,
-      map.InlineObject,
+      map.InlineObject2,
       observe,
       reportProgress
     );
@@ -4489,14 +4489,14 @@ export class CompanyControllerService {
      * Upload Geo-data for the user customer with the provided ID
      * 
      * @param id User customer ID
-     * @param InlineObject 
+     * @param InlineObject2
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public uploadUserCustomerGeoData(id: number, InlineObject?: InlineObject, observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiDefaultResponse>;
-    public uploadUserCustomerGeoData(id: number, InlineObject?: InlineObject, observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiDefaultResponse>>;
-    public uploadUserCustomerGeoData(id: number, InlineObject?: InlineObject, observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiDefaultResponse>>;
-    public uploadUserCustomerGeoData(id: number, InlineObject?: InlineObject, observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
+    public uploadUserCustomerGeoData(id: number, InlineObject2?: InlineObject2, observe?: 'body', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<ApiDefaultResponse>;
+    public uploadUserCustomerGeoData(id: number, InlineObject2?: InlineObject2, observe?: 'response', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpResponse<ApiDefaultResponse>>;
+    public uploadUserCustomerGeoData(id: number, InlineObject2?: InlineObject2, observe?: 'events', reportProgress?: boolean, additionalHeaders?: Array<Array<string>>): Observable<HttpEvent<ApiDefaultResponse>>;
+    public uploadUserCustomerGeoData(id: number, InlineObject2?: InlineObject2, observe: any = 'body', reportProgress: boolean = false, additionalHeaders?: Array<Array<string>>): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling uploadUserCustomerGeoData.');
         }
@@ -4528,7 +4528,7 @@ export class CompanyControllerService {
             }
 
         const handle = this.httpClient.post<ApiDefaultResponse>(`${this.configuration.basePath}/api/company/userCustomers/${encodeURIComponent(String(id))}/uploadGeoData`,
-            InlineObject,
+            InlineObject2,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

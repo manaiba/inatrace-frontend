@@ -22,7 +22,7 @@ import { ApiProcessingEvidenceFieldTranslation } from './apiProcessingEvidenceFi
 
 
 /**
- * list of supported processing evidence fields
+ * List of supported processing evidence fields. Omit on update to preserve associations; send an empty list to clear them.
  */
 
 export interface ApiProcessingEvidenceField { 

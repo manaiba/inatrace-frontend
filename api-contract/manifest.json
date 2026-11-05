@@ -1,0 +1,14 @@
+{
+  "schema_version" : 1,
+  "repository" : "manaiba/inatrace-backend",
+  "source_revision" : "aee18a66377b63a304e48b83ac6e4c3a32d95eae",
+  "source_state" : "clean",
+  "spec_file" : "openapi.json",
+  "spec_sha256" : "9f1943cc254a062464cc8a28d18083cf423ac2c6ad7d9d8ac2bddacaf1cfdb28",
+  "openapi_version" : "3.0.1",
+  "normalization_version" : "inatrace-openapi-v1",
+  "runtime" : {
+    "java" : "17.0.20.1",
+    "springdoc" : "2.6.0"
+  }
+}

@@ -43,6 +43,21 @@ jobs:
       # - name: Lint
       #   run: npm run lint
 
+      - name: Configure Java for API generation
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Verify generated API client
+        run: npm run check:api
+
+      - name: Verify API generation
+        run: npm run test:api-generator
+
+      - name: Compile application
+        run: npm run build
+
       - name: Unit tests
         # Karma in headless Chrome, which the runner provides.
         run: npm run test:ci

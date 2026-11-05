@@ -48,23 +48,23 @@ export interface ApiValueChain {
      */
     valueChainStatus?: ApiValueChain.ValueChainStatusEnum;
     /**
-     * list of supported facility types
+     * List of supported facility types. Omit on update to preserve associations; send an empty list to clear them.
      */
     facilityTypes?: Array<ApiFacilityType>;
     /**
-     * list of supported measuring unit types
+     * List of supported measuring unit types. Omit on update to preserve associations; send an empty list to clear them.
      */
     measureUnitTypes?: Array<ApiMeasureUnitType>;
     /**
-     * list of supported processing evidence types
+     * List of supported processing evidence types. Omit on update to preserve associations; send an empty list to clear them.
      */
     processingEvidenceTypes?: Array<ApiProcessingEvidenceType>;
     /**
-     * list of supported processing evidence fields
+     * List of supported processing evidence fields. Omit on update to preserve associations; send an empty list to clear them.
      */
     processingEvidenceFields?: Array<ApiProcessingEvidenceField>;
     /**
-     * list of supported semi-products
+     * List of supported semi-products. Omit on update to preserve associations; send an empty list to clear them.
      */
     semiProducts?: Array<ApiSemiProduct>;
     productType?: ApiProductType;
@@ -95,23 +95,23 @@ export namespace ApiValueChain {
          */
         valueChainStatus = 'valueChainStatus',
         /**
-         * list of supported facility types
+         * List of supported facility types. Omit on update to preserve associations; send an empty list to clear them.
          */
         facilityTypes = 'facilityTypes',
         /**
-         * list of supported measuring unit types
+         * List of supported measuring unit types. Omit on update to preserve associations; send an empty list to clear them.
          */
         measureUnitTypes = 'measureUnitTypes',
         /**
-         * list of supported processing evidence types
+         * List of supported processing evidence types. Omit on update to preserve associations; send an empty list to clear them.
          */
         processingEvidenceTypes = 'processingEvidenceTypes',
         /**
-         * list of supported processing evidence fields
+         * List of supported processing evidence fields. Omit on update to preserve associations; send an empty list to clear them.
          */
         processingEvidenceFields = 'processingEvidenceFields',
         /**
-         * list of supported semi-products
+         * List of supported semi-products. Omit on update to preserve associations; send an empty list to clear them.
          */
         semiProducts = 'semiProducts',
         productType = 'productType'

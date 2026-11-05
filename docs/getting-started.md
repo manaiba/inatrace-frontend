@@ -65,7 +65,7 @@ The landing page and login screen render without a backend. Everything that call
 
 ## Regenerating the API client
 
-`src/api` is generated from the backend's OpenAPI document and is committed, so a normal run does
-not need this step. To refresh it after the backend's API changes, start the backend and run
-`npm run generate-api`, which reads `http://localhost:8080/v3/api-docs` and fails if nothing is
-serving it.
+`src/api` is generated and committed, so a normal run does not need this step.
+`npm run check:api` compares the client with the pinned, validated backend contract. See
+[api-contract/README.md](../api-contract/README.md) for updating the pinned pair and
+checking an explicitly identified backend artifact.

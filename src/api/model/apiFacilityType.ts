@@ -21,7 +21,7 @@
 
 
 /**
- * list of supported facility types
+ * List of supported facility types. Omit on update to preserve associations; send an empty list to clear them.
  */
 
 export interface ApiFacilityType { 
